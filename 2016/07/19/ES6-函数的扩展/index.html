@@ -26,7 +26,7 @@ name属性
 函数绑定
 尾调用优化
 函数参数的尾逗号">
-<meta property="og:updated_time" content="2016-07-19T04:19:01.279Z">
+<meta property="og:updated_time" content="2016-07-19T16:59:22.612Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ES6 函数的扩展">
 <meta name="twitter:description" content="函数参数的默认值
@@ -256,6 +256,29 @@ name属性
 <li>不可以使用<code>arguments</code>对象，该对象在函数体内不存在。如果要用，可以使用Rest参数代替。</li>
 <li>不可以使用<code>yield</code>命令，因此箭头函数不能用作Generator函数。</li>
 </ol>
+</li>
+<li><h2 id="函数参数的默认值"><a href="#函数参数的默认值" class="headerlink" title="函数参数的默认值"></a>函数参数的默认值</h2><ul>
+<li><h3 id="基本用法-1"><a href="#基本用法-1" class="headerlink" title="基本用法"></a>基本用法</h3><p>ES6 允许为函数的参数设置默认值，即直接写在参数定义的后面。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">log</span>(<span class="params">x, y = 'World'</span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(x, y);</div><div class="line">&#125;</div><div class="line"></div><div class="line">log(<span class="string">'Hello'</span>); <span class="comment">// Hello World</span></div><div class="line">log(<span class="string">'Hello'</span>, <span class="string">'Chiaki'</span>) <span class="comment">// Hello Chiaki</span></div><div class="line">log(<span class="string">'Hello'</span>,<span class="string">''</span>) <span class="comment">// Hello</span></div></pre></td></tr></table></figure>
+<p>另一个例子：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Point</span>(<span class="params">x = 0, y = 0</span>) </span>&#123;</div><div class="line">  <span class="keyword">this</span>.x = x;</div><div class="line">  <span class="keyword">this</span>.y = y;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> p = <span class="keyword">new</span> Point();</div><div class="line"><span class="built_in">console</span>.log(p) <span class="comment">// Point &#123; x: 0, y: 0 &#125;</span></div></pre></td></tr></table></figure>
+<p>ES6 函数参数默认值写法有以下好处：</p>
+<ul>
+<li>简洁</li>
+<li>易于阅读，可以轻易意识到哪些参数是可以省略的</li>
+<li>有利于将来代码优化，即使在对外接口中拿掉这个参数也照常运行</li>
+</ul>
+</li>
+<li><h3 id="与解构赋值默认值结合使用"><a href="#与解构赋值默认值结合使用" class="headerlink" title="与解构赋值默认值结合使用"></a>与解构赋值默认值结合使用</h3><p>参数默认值可以与解构赋值的默认值，结合起来使用。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">&#123;x, y = 5&#125;</span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(x, y);</div><div class="line">&#125;</div><div class="line"></div><div class="line">foo(&#123;&#125;) <span class="comment">// undefined 5</span></div><div class="line">foo(&#123;x:<span class="number">1</span>&#125;) <span class="comment">// 1 5</span></div><div class="line">foo(&#123;x:<span class="number">1</span>, y:<span class="number">2</span>&#125;) <span class="comment">// 1 2</span></div><div class="line">foo() <span class="comment">// error</span></div></pre></td></tr></table></figure>
+<p>上面的代码使用了对象的解构赋值默认值，而没有使用函数参数的默认值。只有当函数<code>foo</code>的参数是一个对象时，变量<code>x</code>和<code>y</code>才会通过解构赋值产生。如果函数<code>foo</code>调用时参数不是对象，变量<code>x</code>和<code>y</code>就不会产生。<br>下面是另一个对象的解构赋值默认值的例子。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fetch</span>(<span class="params">url, &#123; body = '', method = 'GET', headers = &#123;&#125; &#125;</span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(method);</div><div class="line">&#125;</div><div class="line"></div><div class="line">fetch(<span class="string">'http://example.com'</span>, &#123;&#125;)</div><div class="line"><span class="comment">// "GET"</span></div><div class="line"></div><div class="line">fetch(<span class="string">'http://example.com'</span>)</div><div class="line"><span class="comment">// 报错</span></div></pre></td></tr></table></figure>
+</li>
+<li><h3 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h3><p>如果参数默认值是一个变量，则该变量所处的作用域，与其他变量的作用域规则是一样的，即先是当前函数的作用域，然后才是全局作用域。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> x = <span class="number">1</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params">x, y = x</span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(y);</div><div class="line">&#125;</div><div class="line"></div><div class="line">f(<span class="number">2</span>) <span class="comment">// 2</span></div></pre></td></tr></table></figure>
+<p>上面代码中，参数y的默认值等于x。调用时，由于函数作用域内部的变量x已经生成，所以y等于参数x，而不是全局变量x。</p>
+</li>
+</ul>
 </li>
 </ol>
 
