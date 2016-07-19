@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>ES6 函数的扩展 | Tingandpeng</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="函数参数的默认值
+rest参数
+扩展运算符
+name属性
+箭头函数
+函数绑定
+尾调用优化
+函数参数的尾逗号">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ES6 函数的扩展">
+<meta property="og:url" content="http://yoursite.com/2016/07/19/ES6-函数的扩展/index.html">
+<meta property="og:site_name" content="Tingandpeng">
+<meta property="og:description" content="函数参数的默认值
+rest参数
+扩展运算符
+name属性
+箭头函数
+函数绑定
+尾调用优化
+函数参数的尾逗号">
+<meta property="og:updated_time" content="2016-07-19T02:48:21.104Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ES6 函数的扩展">
+<meta name="twitter:description" content="函数参数的默认值
+rest参数
+扩展运算符
+name属性
+箭头函数
+函数绑定
+尾调用优化
+函数参数的尾逗号">
+  
+    <link rel="alternative" href="/atom.xml" title="Tingandpeng" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="/images/avatar.jpg" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">高鹏</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">Come with me for a little ride, see the shadows passing by</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/categories/life">生活</a></li>
+				        
+							<li><a href="/categories/tech">技术</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/gaoupon" title="github">github</a>
+					        
+								<a class="mail" target="_blank" href="/18046048779@163.com" title="mail">mail</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/ES6/" style="font-size: 10px;">ES6</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">高鹏</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img src="/images/avatar.jpg" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">高鹏</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">Come with me for a little ride, see the shadows passing by</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/categories/life">生活</a></li>
+		        
+					<li><a href="/categories/tech">技术</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/gaoupon" title="github">github</a>
+			        
+						<a class="mail" target="_blank" href="/18046048779@163.com" title="mail">mail</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-ES6-函数的扩展" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/07/19/ES6-函数的扩展/" class="article-date">
+  	<time datetime="2016-07-19T00:58:09.000Z" itemprop="datePublished">2016-07-19</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      ES6 函数的扩展
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ES6/">ES6</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/tech/">tech</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>函数参数的默认值</li>
+<li>rest参数</li>
+<li>扩展运算符</li>
+<li>name属性</li>
+<li>箭头函数</li>
+<li>函数绑定</li>
+<li>尾调用优化</li>
+<li>函数参数的尾逗号</li>
+</ul>
+<hr>
+<a id="more"></a>
+<ol>
+<li><h2 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h2><ul>
+<li><h3 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h3><p>ES6 允许使用“箭头”(=&gt;)定义函数。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> f = v =&gt; v;</div></pre></td></tr></table></figure>
+<p>上面的箭头函数等同于：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> f = <span class="function"><span class="keyword">function</span>(<span class="params">v</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> v;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>如果箭头函数不需要参数或需要多个参数，就使用一个圆括号代表参数部分。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> f = () =&gt; <span class="number">5</span>;</div><div class="line"><span class="comment">//等同于</span></div><div class="line"><span class="keyword">var</span> f = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="number">5</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> sum = (num1, num2) =&gt; num1 + num2;</div><div class="line"><span class="comment">//等同于</span></div><div class="line"><span class="keyword">var</span> sum = <span class="function"><span class="keyword">function</span> (<span class="params">num1, num2</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> num1 + num2;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>如果箭头函数的代码块部分多于一条语句，就要使用大括<code>{}</code>将它们括起来，并且使<code>return</code>语句返回。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> sum = (num1, num2) =&gt; &#123;</div><div class="line">    <span class="keyword">return</span> num1 + num2;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>由于大括号被解释为代码块，所以如果箭头函数直接返回一个对象，必须在外面加上括号。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> getTempObj = id =&gt; (&#123;</div><div class="line">        id : id,</div><div class="line">        name : <span class="string">'temp'</span></div><div class="line">    &#125;)</div></pre></td></tr></table></figure>
+</li>
+<li><h3 id="使用注意点"><a href="#使用注意点" class="headerlink" title="使用注意点"></a>使用注意点</h3><p><strong>箭头函数有几个使用注意点。</strong></p>
+</li>
+</ul>
+<ol>
+<li>函数体内的<code>this</code>对象，就是定义时所在的对象，而不是使用时所在的对象。</li>
+<li>不可以当做构造函数，也就是说，不可以使用<code>new</code>命令，否则会抛出一个错误。</li>
+<li>不可以使用<code>arguments</code>对象，该对象在函数体内不存在。如果要用，可以使用Rest参数代替。</li>
+<li>不可以使用<code>yield</code>命令，因此箭头函数不能用作Generator函数。</li>
+</ol>
+</li>
+</ol>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/07/18/Hello-World/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Hello World</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="ES6-函数的扩展" data-title="ES6 函数的扩展" data-url="http://yoursite.com/2016/07/19/ES6-函数的扩展/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"tingandpeng"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+  </script>
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 高鹏
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+           | 本站访客数<span id="busuanzi_value_site_uv"></span>人次
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+
+<script>
+	var yiliaConfig = {
+		fancybox: false,
+		mathjax: false,
+		animate: false,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+  </div>
+</body>
+</html>
