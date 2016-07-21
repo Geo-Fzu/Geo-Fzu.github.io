@@ -6,16 +6,58 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <title>作用域与作用域链 | Tingandpeng</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="要深刻理解函数的作用域和作用域链，首先要掌握以下几个概念：">
+  <meta name="description" content="要深刻理解函数的作用域和作用域链，首先要掌握以下几个概念：
+
+运行期上下文：
+函数被执行时创建
+拥有一个自己的作用域链
+初始为当前运行函数 [[scope]]  属性（函数定义时被确定）所包含的对象
+
+
+活动对象（Activation Object）：
+由函数的运行期上下文创建
+在运行时可变
+初始时只有 arguments 属性，通过变量的初始化，包含了局部变量、命名参数、 this 等
+
+
+执行">
 <meta property="og:type" content="article">
 <meta property="og:title" content="作用域与作用域链">
 <meta property="og:url" content="http://yoursite.com/2016/07/20/作用域与作用域链/index.html">
 <meta property="og:site_name" content="Tingandpeng">
-<meta property="og:description" content="要深刻理解函数的作用域和作用域链，首先要掌握以下几个概念：">
-<meta property="og:updated_time" content="2016-07-21T04:01:29.078Z">
+<meta property="og:description" content="要深刻理解函数的作用域和作用域链，首先要掌握以下几个概念：
+
+运行期上下文：
+函数被执行时创建
+拥有一个自己的作用域链
+初始为当前运行函数 [[scope]]  属性（函数定义时被确定）所包含的对象
+
+
+活动对象（Activation Object）：
+由函数的运行期上下文创建
+在运行时可变
+初始时只有 arguments 属性，通过变量的初始化，包含了局部变量、命名参数、 this 等
+
+
+执行">
+<meta property="og:updated_time" content="2016-07-21T08:56:56.918Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="作用域与作用域链">
-<meta name="twitter:description" content="要深刻理解函数的作用域和作用域链，首先要掌握以下几个概念：">
+<meta name="twitter:description" content="要深刻理解函数的作用域和作用域链，首先要掌握以下几个概念：
+
+运行期上下文：
+函数被执行时创建
+拥有一个自己的作用域链
+初始为当前运行函数 [[scope]]  属性（函数定义时被确定）所包含的对象
+
+
+活动对象（Activation Object）：
+由函数的运行期上下文创建
+在运行时可变
+初始时只有 arguments 属性，通过变量的初始化，包含了局部变量、命名参数、 this 等
+
+
+执行">
   
     <link rel="alternative" href="/atom.xml" title="Tingandpeng" type="application/atom+xml">
   
@@ -104,7 +146,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/ES6/" style="font-size: 10px;">ES6</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/概念/" style="font-size: 15px;">概念</a>
+						<a href="/tags/ES6/" style="font-size: 10px;">ES6</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/作用域/" style="font-size: 10px;">作用域</a> <a href="/tags/概念/" style="font-size: 15px;">概念</a>
 					</div>
 				</section>
 				
@@ -188,7 +230,7 @@
       <div class="article-info article-info-post">
         
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/概念/">概念</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/作用域/">作用域</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/概念/">概念</a></li></ul>
 	</div>
 
         
@@ -203,12 +245,12 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>要深刻理解函数的作用域和作用域链，首先要掌握以下几个概念：<br><a id="more"></a></p>
+        <p>要深刻理解函数的作用域和作用域链，首先要掌握以下几个概念：</p>
 <ul>
 <li><strong>运行期上下文：</strong><ul>
 <li>函数被执行时创建</li>
 <li>拥有一个自己的作用域链</li>
-<li>初始为当前运行函数 <code>[[scope]]</code> （函数定义时被确定） 属性所包含的对象</li>
+<li>初始为当前运行函数 <code>[[scope]]</code>  属性（函数定义时被确定）所包含的对象</li>
 </ul>
 </li>
 <li><strong>活动对象（Activation Object）：</strong><ul>
@@ -224,8 +266,9 @@
 </ul>
 </li>
 <li><strong>[[scope]] 属性：</strong><ul>
-<li>函数对象都有一个内部属性 [[scope]]，仅对 JS 引擎可见</li>
-<li>包含了函数被创建后的作用域中的集合，这个集合被称为作用域链</li>
+<li>函数对象都有一个内部属性 [[scope]]</li>
+<li>函数被创建后，函数 <code>[[scope]]</code> 属性会被创建此函数的作用域中可访问的数据对象填充，是所有复变量对象的层级链</li>
+<li><code>[[scope]]</code> 在函数被创建时<strong>静态存储</strong>，永远不会改变，直至销毁</li>
 </ul>
 </li>
 <li><strong>作用域：</strong><ul>
@@ -234,11 +277,51 @@
 </ul>
 </li>
 <li><strong>作用域链：</strong><ul>
-<li>与一个执行期上下文相关，用于标识符解析中变量查找</li>
-<li>函数被创建后作用域链会被创建此函数的作用域中可访问的数据对象填充</li>
+<li>与一个运行期上下文相关，用于标识符解析中变量查找</li>
+<li>函数被调用时创建运行期上下文的作用域链，包含活动对象和函数内部的 <code>[[scope]]</code> 属性</li>
+<li>作用域链本质上是一个指向变量对象的指针列表，它只引用但不实际包含变量对象<a id="more"></a>
+</li>
 </ul>
 </li>
 </ul>
+<hr>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> x = <span class="number">10</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> y = <span class="number">20</span>;</div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">var</span> z = <span class="number">30</span>;</div><div class="line">        <span class="built_in">console</span>.log(x + y + z);</div><div class="line">    &#125;</div><div class="line">    bar();</div><div class="line">&#125;</div><div class="line">foo();</div></pre></td></tr></table></figure>
+<p>我们分析以上代码中各层的<code>活动对象</code>，<code>函数的[[scope]]属性</code>以及<code>运行期的作用域链</code>：</p>
+<ol>
+<li><h3 id="全局执行环境："><a href="#全局执行环境：" class="headerlink" title="全局执行环境："></a>全局执行环境：</h3><ul>
+<li>变量对象 VO：<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">globalcontext.VO === Global = &#123;</div><div class="line">    x: <span class="number">10</span>,</div><div class="line">    foo: <span class="function"><span class="keyword">function</span></span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><h3 id="foo-被创建时："><a href="#foo-被创建时：" class="headerlink" title="foo 被创建时："></a>foo 被<strong>创建</strong>时：</h3><ul>
+<li>foo 的 <code>[[scope]]</code> 属性：<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">foo.[[scope]] = [</div><div class="line">    globalcontext.VO</div><div class="line">]</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><h3 id="foo-被调用时："><a href="#foo-被调用时：" class="headerlink" title="foo 被调用时："></a>foo 被<strong>调用</strong>时：</h3><ul>
+<li><p>foo 的运行期上下文产生的活动对象：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">fooContext.AO = &#123;</div><div class="line">    y: <span class="number">20</span>,</div><div class="line">    bar: <span class="function"><span class="keyword">function</span></span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>foo <strong>运行期上下文作用域链</strong>：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">fooContext.Scope = fonContext.AO + foo.[[scope]]</div><div class="line"><span class="comment">//等同于</span></div><div class="line">fooContext.Scope = [</div><div class="line">    fonContext.AO,</div><div class="line">    globalContext.VO</div><div class="line">]</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><h3 id="bar-被创建时："><a href="#bar-被创建时：" class="headerlink" title="bar 被创建时："></a>bar 被<strong>创建</strong>时：</h3><ul>
+<li>bar 的 <code>[[scope]]</code> 属性：<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">bar.[[scope]] = [</div><div class="line">    fooContext.AO,</div><div class="line">    globalcontext.VO</div><div class="line">]</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><h3 id="bar-被调用时："><a href="#bar-被调用时：" class="headerlink" title="bar 被调用时："></a>bar 被<strong>调用</strong>时：</h3><ul>
+<li><p>bar 的运行期上下文产生的活动对象：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">barContext.AO = &#123;</div><div class="line">    z: <span class="number">30</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>bar <strong>运行期上下文作用域链</strong>：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">barContext.Scope = barContext.AO + bar.[[scope]]</div><div class="line"><span class="comment">//等同于</span></div><div class="line">fooContext.Scope = [</div><div class="line">    barContext.AO,</div><div class="line">    fonContext.AO,</div><div class="line">    globalContext.VO</div><div class="line">]</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ol>
 
       
     </div>

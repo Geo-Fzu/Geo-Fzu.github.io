@@ -103,7 +103,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/ES6/" style="font-size: 10px;">ES6</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/概念/" style="font-size: 15px;">概念</a>
+						<a href="/tags/ES6/" style="font-size: 10px;">ES6</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/作用域/" style="font-size: 10px;">作用域</a> <a href="/tags/概念/" style="font-size: 15px;">概念</a>
 					</div>
 				</section>
 				
@@ -189,7 +189,41 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>要深刻理解函数的作用域和作用域链，首先要掌握以下几个概念：<br>
+        <p>要深刻理解函数的作用域和作用域链，首先要掌握以下几个概念：</p>
+<ul>
+<li><strong>运行期上下文：</strong><ul>
+<li>函数被执行时创建</li>
+<li>拥有一个自己的作用域链</li>
+<li>初始为当前运行函数 <code>[[scope]]</code>  属性（函数定义时被确定）所包含的对象</li>
+</ul>
+</li>
+<li><strong>活动对象（Activation Object）：</strong><ul>
+<li>由函数的运行期上下文创建</li>
+<li>在运行时可变</li>
+<li>初始时只有 arguments 属性，通过变量的初始化，包含了局部变量、命名参数、 this 等</li>
+</ul>
+</li>
+<li><strong>执行环境：</strong><ul>
+<li>分为全局执行环境和局部执行环境</li>
+<li>执行环境决定了变量或函数有权访问的其它数据</li>
+<li>每个执行环境都拥有一个<code>变量对象</code></li>
+</ul>
+</li>
+<li><strong>[[scope]] 属性：</strong><ul>
+<li>函数对象都有一个内部属性 [[scope]]</li>
+<li>函数被创建后，函数 <code>[[scope]]</code> 属性会被创建此函数的作用域中可访问的数据对象填充，是所有复变量对象的层级链</li>
+<li><code>[[scope]]</code> 在函数被创建时<strong>静态存储</strong>，永远不会改变，直至销毁</li>
+</ul>
+</li>
+<li><strong>作用域：</strong><ul>
+<li>作用域是函数的内部属性，谈到作用域绕不开 function</li>
+<li>决定了哪些变量能被函数访问</li>
+</ul>
+</li>
+<li><strong>作用域链：</strong><ul>
+<li>与一个运行期上下文相关，用于标识符解析中变量查找</li>
+<li>函数被调用时创建运行期上下文的作用域链，包含活动对象和函数内部的 <code>[[scope]]</code> 属性</li>
+<li>作用域链本质上是一个指向变量对象的指针列表，它只引用但不实际包含变量对象
       
     </div>
     
@@ -197,7 +231,7 @@
       
       
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/概念/">概念</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/作用域/">作用域</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/概念/">概念</a></li></ul>
 	</div>
 
       
