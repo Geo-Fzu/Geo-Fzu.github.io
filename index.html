@@ -189,43 +189,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>要深刻理解函数的作用域和作用域链，首先要掌握以下几个概念：</p>
-<ul>
-<li><strong>运行期上下文：</strong><ul>
-<li>函数被执行时创建</li>
-<li>拥有一个自己的作用域链</li>
-<li>初始为当前运行函数 <code>[[scope]]</code> （函数定义时被确定） 属性所包含的对象</li>
-</ul>
-</li>
-<li><strong>活动对象（Activation Object）：</strong><ul>
-<li>由函数的运行期上下文创建</li>
-<li>在运行时可变</li>
-<li>初始时只有 arguments 属性，通过变量的初始化，包含了局部变量、命名参数、 this 等</li>
-</ul>
-</li>
-<li><strong>执行环境：</strong><ul>
-<li>分为全局执行环境和局部执行环境</li>
-<li>执行环境决定了变量或函数有权访问的其它数据</li>
-<li>每个执行环境都拥有一个<code>变量对象</code></li>
-</ul>
-</li>
-<li><strong>[[scope]] 属性：</strong><ul>
-<li>函数对象都有一个内部属性 [[scope]]，仅对 JS 引擎可见</li>
-<li>包含了函数被创建后的作用域中的集合，这个集合被称为作用域链</li>
-</ul>
-</li>
-<li><strong>作用域：</strong><ul>
-<li>作用域是函数的内部属性，谈到作用域绕不开 function</li>
-<li>决定了哪些变量能被函数访问</li>
-</ul>
-</li>
-<li><strong>作用域链：</strong><ul>
-<li>与一个执行期上下文相关，用于标识符解析中变量查找</li>
-<li>函数被创建后作用域链会被创建此函数的作用域中可访问的数据对象填充</li>
-</ul>
-</li>
-</ul>
-
+        <p>要深刻理解函数的作用域和作用域链，首先要掌握以下几个概念：<br>
       
     </div>
     
@@ -242,6 +206,10 @@
 	</div>
 
 
+      
+        <p class="article-more-link">
+          <a  href="/2016/07/20/作用域与作用域链/#more">more >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
