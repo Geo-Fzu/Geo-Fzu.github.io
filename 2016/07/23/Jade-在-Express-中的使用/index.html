@@ -12,7 +12,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/07/23/Jade-在-Express-中的使用/index.html">
 <meta property="og:site_name" content="Tingandpeng">
 <meta property="og:description" content="Jade 是一个高性能的模板引擎，它是用 JavaScript 实现的，并且可以供 Node 使用。">
-<meta property="og:updated_time" content="2016-07-23T03:50:47.201Z">
+<meta property="og:updated_time" content="2016-07-23T03:52:51.082Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Jade 在 Express 中的使用">
 <meta name="twitter:description" content="Jade 是一个高性能的模板引擎，它是用 JavaScript 实现的，并且可以供 Node 使用。">
@@ -257,7 +257,7 @@
 <p>  或者使用 <code>for</code>：</p>
   <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">for VAL in OBJ</div></pre></td></tr></table></figure>
 <p>  如果使用 JavaScript 原生代码：</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">+ books.forEach(function (book, i, arr) &#123;</div><div class="line">    li book: #&#123;book&#125;</div><div class="line">+ &#125;)</div><div class="line"></div><div class="line">+ for(i in books)&#123;</div><div class="line">    li book: #&#123;books[i]&#125;</div><div class="line">+ &#125;</div></pre></td></tr></table></figure>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">- books.forEach(function (book, i, arr) &#123;</div><div class="line">    li book: #&#123;book&#125;</div><div class="line">- &#125;)</div><div class="line"></div><div class="line">- for(i in books)&#123;</div><div class="line">    li book: #&#123;books[i]&#125;</div><div class="line">- &#125;</div></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>
