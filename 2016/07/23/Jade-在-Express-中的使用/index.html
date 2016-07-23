@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>Jade 在 Express 中的使用 | Tingandpeng</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Jade 是一个高性能的模板引擎，它是用 JavaScript 实现的，并且可以供 Node 使用。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Jade 在 Express 中的使用">
+<meta property="og:url" content="http://yoursite.com/2016/07/23/Jade-在-Express-中的使用/index.html">
+<meta property="og:site_name" content="Tingandpeng">
+<meta property="og:description" content="Jade 是一个高性能的模板引擎，它是用 JavaScript 实现的，并且可以供 Node 使用。">
+<meta property="og:updated_time" content="2016-07-23T03:50:47.201Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Jade 在 Express 中的使用">
+<meta name="twitter:description" content="Jade 是一个高性能的模板引擎，它是用 JavaScript 实现的，并且可以供 Node 使用。">
+  
+    <link rel="alternative" href="/atom.xml" title="Tingandpeng" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="/images/avatar.jpg" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">高鹏</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">Come with me for a little ride, see the shadows passing by</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/categories/life">生活</a></li>
+				        
+							<li><a href="/categories/tech">技术</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/gaoupon" title="github">github</a>
+					        
+								<a class="mail" target="_blank" href="/18046048779@163.com" title="mail">mail</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/ES6/" style="font-size: 10px;">ES6</a> <a href="/tags/Express/" style="font-size: 10px;">Express</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Jade/" style="font-size: 10px;">Jade</a> <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/NodeJs/" style="font-size: 10px;">NodeJs</a> <a href="/tags/作用域/" style="font-size: 10px;">作用域</a> <a href="/tags/概念/" style="font-size: 15px;">概念</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">高鹏</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img src="/images/avatar.jpg" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">高鹏</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">Come with me for a little ride, see the shadows passing by</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/categories/life">生活</a></li>
+		        
+					<li><a href="/categories/tech">技术</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/gaoupon" title="github">github</a>
+			        
+						<a class="mail" target="_blank" href="/18046048779@163.com" title="mail">mail</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-Jade-在-Express-中的使用" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/07/23/Jade-在-Express-中的使用/" class="article-date">
+  	<time datetime="2016-07-23T01:32:47.000Z" itemprop="datePublished">2016-07-23</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Jade 在 Express 中的使用
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Express/">Express</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jade/">Jade</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NodeJs/">NodeJs</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/tech/">tech</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Jade 是一个高性能的模板引擎，它是用 JavaScript 实现的，并且可以供 Node 使用。<br><a id="more"></a></p>
+<ol>
+<li><h2 id="在-Express-使用-Jade-模板引擎"><a href="#在-Express-使用-Jade-模板引擎" class="headerlink" title="在 Express 使用 Jade 模板引擎"></a>在 Express 使用 Jade 模板引擎</h2> <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">app.set(<span class="string">'views'</span>, views)</div><div class="line"><span class="comment">// views 为 Jade 文件的存放目录，例如：var views = path.join(__dirname, 'view') </span></div><div class="line">app.set(<span class="string">'view engine'</span>, <span class="string">'jade'</span>)</div><div class="line"></div><div class="line">app.get(<span class="string">'/'</span>, (req, res) =&gt; &#123;</div><div class="line">    <span class="keyword">var</span> name = <span class="string">'chiaki'</span></div><div class="line">    <span class="keyword">var</span> books = [<span class="string">"A"</span>, <span class="string">"B"</span>, <span class="string">"C"</span>]</div><div class="line">    <span class="comment">// 在 views 目录下查找 basics 文件，传输数据，并将渲染结果通过 res 返回页面</span></div><div class="line">    res.render(<span class="string">'basics'</span>,&#123;</div><div class="line">        name: name,</div><div class="line">        books: books</div><div class="line">    &#125;)</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+</li>
+<li><h2 id="一些基本语法："><a href="#一些基本语法：" class="headerlink" title="一些基本语法："></a>一些基本语法：</h2><ul>
+<li><p><strong>标签</strong></p>
+<ul>
+<li><p>标签就用一个简单的单词：<br>  例如 html 标签写作： <code>html</code><br>  渲染后再页面中会被转换为标签：</p>
+  <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>加 class 和 id 的标签：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">div#container</div><div class="line">div.bar</div><div class="line">div.#container.bar.baz</div></pre></td></tr></table></figure>
+<p>  渲染后分别被转换为：</p>
+  <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"container"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"bar"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"bar baz"</span> <span class="attr">id</span>=<span class="string">"container"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>标签的文本内容，直接放在标签之后：<br>  <code>p hello,chiaki</code><br>  转化成：</p>
+  <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>hello,chiaki<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>文本内容从变量中取值：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">h1 foo</div><div class="line">h2= book.name</div><div class="line">h3 &quot;#&#123;book.name&#125;&quot; for #&#123;book.price&#125; €</div><div class="line"></div><div class="line">// &#123;&quot;book&quot;: &#123;&quot;name&quot;: &quot;Hello&quot;, &quot;price&quot;: 12.99&#125;&#125;</div></pre></td></tr></table></figure>
+<p>  转化成：</p>
+  <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>foo<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">h2</span>&gt;</span>Hello<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">h3</span>&gt;</span>"Hello" for 12.99 €<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p><strong>注释</strong></p>
+<ul>
+<li><p>单行注释和 JavaScript 里是一样的，通过 <code>//</code> 来开始，并且<strong>必须单独一行</strong>：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">// just some paragraphs</div><div class="line">p foo</div><div class="line">p bar</div></pre></td></tr></table></figure>
+<p>  渲染为：</p>
+  <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- just some paragraphs --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>foo<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>bar<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>  Jade 同样支持不输出的注释，加一个短横线就行了：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">//- will not output within markup</div><div class="line">p foo</div><div class="line">p bar</div></pre></td></tr></table></figure>
+<p>  渲染为：</p>
+  <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>foo<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>bar<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p><strong>内联</strong><br>  通过缩进的方式内联：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">ul</div><div class="line">  li.first</div><div class="line">    a(href=&apos;#&apos;) foo</div><div class="line">  li</div><div class="line">    a(href=&apos;#&apos;) bar</div><div class="line">  li.last</div><div class="line">    a(href=&apos;#&apos;) baz</div></pre></td></tr></table></figure>
+<p>  渲染为：</p>
+  <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"first"</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>foo<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>bar<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"last"</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>baz<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>属性</strong><br>  元素的属性写在 <code>( )</code> 中，当一个值是 <code>undefined</code> 或者 <code>null</code> 属性 不 会被加上：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">a(href=&apos;/login&apos;, title=&apos;View login page&apos;) Login</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>代码</strong></p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">// 使用 `-` 前缀，这是不会被输出的：</div><div class="line">- var foo = &apos;bar&apos;;</div><div class="line"></div><div class="line">//  可以用在循环中：</div><div class="line">- for (var key in obj)</div><div class="line">  p= obj[key]</div><div class="line"></div><div class="line">// 由于 Jade 缓存技术，下面的代码也是可以的：</div><div class="line">- if (foo)</div><div class="line">  ul</div><div class="line">    li yay</div><div class="line">    li foo</div><div class="line">    li worked</div><div class="line">- else</div><div class="line">  p oh no! didnt work</div><div class="line"></div><div class="line">// 或者：</div><div class="line">- if (items.length)</div><div class="line">  ul</div><div class="line">    - items.forEach(function(item)&#123;</div><div class="line">      li= item</div><div class="line">    - &#125;)</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>循环</strong><br>  尽管已经支持 JavaScript 原生代码，Jade 还是支持了一些特殊的标签，它们可以让模板更加易于理解，其中之一就是 <code>each</code>, 这种形式：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">each VAL[, KEY] in OBJ</div></pre></td></tr></table></figure>
+<p>  或者使用 <code>for</code>：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">for VAL in OBJ</div></pre></td></tr></table></figure>
+<p>  如果使用 JavaScript 原生代码：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">+ books.forEach(function (book, i, arr) &#123;</div><div class="line">    li book: #&#123;book&#125;</div><div class="line">+ &#125;)</div><div class="line"></div><div class="line">+ for(i in books)&#123;</div><div class="line">    li book: #&#123;books[i]&#125;</div><div class="line">+ &#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><h2 id="模板继承"><a href="#模板继承" class="headerlink" title="模板继承"></a>模板继承</h2><p> Jade 支持通过 <code>block</code> 和 <code>extends</code> 关键字来实现模板继承。一个块就是一个 Jade 的 block ，它将在子模板中实现，同时是支持递归的。Jade 的模板类似 Java 中的接口，只不过前者继承的是视图和模板，后者继承的是逻辑和方法。<br> Jade 块如果没有内容，Jade 会添加默认内容，下面的代码默认会输出 block scripts, block content, 和 block foot。</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">// layout.jade</div><div class="line">html</div><div class="line">  head</div><div class="line">    h1 My Site - #&#123;title&#125;</div><div class="line">    block scripts</div><div class="line">      script(src=&apos;/jquery.js&apos;)</div><div class="line">  body</div><div class="line">    block content</div><div class="line">    block foot</div><div class="line">      #footer</div><div class="line">        p some footer content</div></pre></td></tr></table></figure>
+<p> 现在我们来继承这个布局，简单创建一个新文件，像下面那样直接使用 <code>extends</code>，给定路径（可以选择带 .jade 扩展名或者不带）。你可以定义一个或者更多的块来覆盖父级块内容, 注意到这里的 foot 块没有定义，所以它还会输出父级的 “some footer content”。</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">extends layout</div><div class="line"></div><div class="line">block scripts</div><div class="line">  script(src=&apos;/jquery.js&apos;)</div><div class="line">  script(src=&apos;/pets.js&apos;)</div><div class="line"></div><div class="line">block content</div><div class="line">  h1= title</div><div class="line">  each pet in pets</div><div class="line">    include pet</div></pre></td></tr></table></figure>
+<p> Jade 允许你<code>替换（默认）</code>、<code>前置</code>和<code>追加</code> blocks. 比如，假设你希望在所有页面的头部都加上默认的脚本，你可以这么做：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">// layout.jade</div><div class="line">html</div><div class="line">  head</div><div class="line">    block head</div><div class="line">      script(src=&apos;/vendor/jquery.js&apos;)</div><div class="line">      script(src=&apos;/vendor/caustic.js&apos;)</div><div class="line">  body</div><div class="line">    block content</div></pre></td></tr></table></figure>
+<p> 现在假设你有一个 Javascript 游戏的页面，你希望在默认的脚本之外添加一些游戏相关的脚本，你可以直接 <code>append</code> 上代码块：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">extends layout</div><div class="line"></div><div class="line">block append head</div><div class="line">  script(src=&apos;/vendor/three.js&apos;)</div><div class="line">  script(src=&apos;/game.js&apos;)</div></pre></td></tr></table></figure>
+<p> 使用 block append 或 block prepend 时 <code>block</code> 是可选的:</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">extends layout</div><div class="line"></div><div class="line">append head</div><div class="line">  script(src=&apos;/vendor/three.js&apos;)</div><div class="line">  script(src=&apos;/game.js&apos;)</div></pre></td></tr></table></figure>
+</li>
+<li><h2 id="Mixins"><a href="#Mixins" class="headerlink" title="Mixins"></a>Mixins</h2><p> Mixins 在编译的模板里会被 Jade 转换为普通的 JavaScript 函数。 Mixins 可以带参数，但不是必需的：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">mixin list</div><div class="line">  ul</div><div class="line">    li foo</div><div class="line">    li bar</div><div class="line">    li baz</div></pre></td></tr></table></figure>
+<p> 使用不带参数的 mixin 看上去非常简单，在一个块外：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">h2 Groceries</div><div class="line">mixin list</div></pre></td></tr></table></figure>
+<p> Mixins 也可以带一个或者多个参数，参数就是普通的 JavaScript 表达式，比如下面的例子：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">mixin pets(pets)</div><div class="line">  ul.pets</div><div class="line">    + each pet in pets</div><div class="line">      li= pet</div><div class="line"></div><div class="line">mixin profile(user)</div><div class="line">  .user</div><div class="line">    h2= user.name</div><div class="line">    mixin pets(user.pets)</div></pre></td></tr></table></figure>
+<p> 会输出像下面的 HTML:</p>
+ <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"user"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">h2</span>&gt;</span>tj<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"pets"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>tobi<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>loki<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>jane<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>manny<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></li>
+</ol>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/07/20/作用域与作用域链/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">作用域与作用域链</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Jade-在-Express-中的使用" data-title="Jade 在 Express 中的使用" data-url="http://yoursite.com/2016/07/23/Jade-在-Express-中的使用/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"tingandpeng"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+  </script>
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 高鹏
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+           | 本站访客数<span id="busuanzi_value_site_uv"></span>人次
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+
+<script>
+	var yiliaConfig = {
+		fancybox: false,
+		mathjax: false,
+		animate: false,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+  </div>
+</body>
+</html>
