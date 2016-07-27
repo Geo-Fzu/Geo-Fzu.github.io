@@ -4,17 +4,18 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>Tag: 语义化 | Tingandpeng</title>
+  <title>ES6 Promise 对象 | Tingandpeng</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="blog | javascript | nodejs | css | html">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Tingandpeng">
-<meta property="og:url" content="http://yoursite.com/tags/语义化/index.html">
+  <meta name="description" content="Promise 是异步编程的一种解决方案，比传统的回调函数更合理和强大。Promise 保存未来才会结束的事件（通常是一个异步操作）的结果，从 Promise 中可以获得异步操作的消息。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ES6 Promise 对象">
+<meta property="og:url" content="http://yoursite.com/2016/07/27/ES6-Promise-对象/index.html">
 <meta property="og:site_name" content="Tingandpeng">
-<meta property="og:description" content="blog | javascript | nodejs | css | html">
+<meta property="og:description" content="Promise 是异步编程的一种解决方案，比传统的回调函数更合理和强大。Promise 保存未来才会结束的事件（通常是一个异步操作）的结果，从 Promise 中可以获得异步操作的消息。">
+<meta property="og:updated_time" content="2016-07-27T15:08:02.139Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Tingandpeng">
-<meta name="twitter:description" content="blog | javascript | nodejs | css | html">
+<meta name="twitter:title" content="ES6 Promise 对象">
+<meta name="twitter:description" content="Promise 是异步编程的一种解决方案，比传统的回调函数更合理和强大。Promise 保存未来才会结束的事件（通常是一个异步操作）的结果，从 Promise 中可以获得异步操作的消息。">
   
     <link rel="alternative" href="/atom.xml" title="Tingandpeng" type="application/atom+xml">
   
@@ -163,57 +164,122 @@
 	</div>
 </nav>
 
-      <div class="body-wrap">
+      <div class="body-wrap"><article id="post-ES6-Promise-对象" class="article article-type-post" itemscope itemprop="blogPost">
   
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/07/24/Html5-article-与-section-标签/" class="archive-article-date">
-  	<time datetime="2016-07-24T12:04:49.000Z" itemprop="datePublished">Jul 24</time>
+    <div class="article-meta">
+      <a href="/2016/07/27/ES6-Promise-对象/" class="article-date">
+  	<time datetime="2016-07-27T14:26:55.000Z" itemprop="datePublished">2016-07-27</time>
 </a>
-        </div>
-    	 
+    </div>
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/07/24/Html5-article-与-section-标签/">Html5 article 与 section 标签</a>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      ES6 Promise 对象
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+      </header>
+      
+      <div class="article-info article-info-post">
+        
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Html5/">Html5</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/标签/">标签</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/语义化/">语义化</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ES6/">ES6</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
 	</div>
 
-          
+        
 	<div class="article-category tagcloud">
 	<a class="article-category-link" href="/categories/tech/">tech</a>
 	</div>
 
 
-        </div>
         <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
+      </div>
+      
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><code>Promise</code> 是异步编程的一种解决方案，比传统的回调函数更合理和强大。Promise 保存未来才会结束的事件（通常是一个异步操作）的结果，从 Promise 中可以获得异步操作的消息。<br><a id="more"></a></p>
+<h1 id="1-Promise-的三种状态"><a href="#1-Promise-的三种状态" class="headerlink" title="1. Promise 的三种状态"></a>1. Promise 的三种状态</h1><ul>
+<li>Promise 对象代表一个异步操作，有三种状态：<ul>
+<li><code>Pending</code> （进行中）</li>
+<li><code>Resolved</code> （已完成， Fulfilled）</li>
+<li><code>Rejected</code> （已失败）<br>只有异步操作的结果可以决定当前是哪一种状态，任何其他操作不能改变这个状态。</li>
+</ul>
+</li>
+<li>Promise 只有两种状态改变的可能：<ul>
+<li>从 Pending 变为 Resolved</li>
+<li>从 Pending 变为 Rejected<br><strong>一旦状态改变，就不会再改变。</strong></li>
+</ul>
+</li>
+</ul>
+<p>有了 Promise 对象，可以将异步操作以同步操作的流程表达出来，避免了层层嵌套的回调函数（callback hell）。</p>
+<p>Promise 一旦新建就会立即执行，无法中途取消。如果不设置回调函数，Promise 内部抛出的错误不会反应到外部。</p>
+<h1 id="2-Promise-的基本用法"><a href="#2-Promise-的基本用法" class="headerlink" title="2. Promise 的基本用法"></a>2. Promise 的基本用法</h1><ul>
+<li>Promise 对象代表一个异步操作，有三种状态：<ul>
+<li><code>Pending</code> （进行中）</li>
+<li><code>Resolved</code> （已完成， Fulfilled）</li>
+<li><code>Rejected</code> （已失败）<br>只有异步操作的结果可以决定当前是哪一种状态，任何其他操作不能改变这个状态。</li>
+</ul>
+</li>
+<li>Promise 只有两种状态改变的可能：<ul>
+<li>从 Pending 变为 Resolved</li>
+<li>从 Pending 变为 Rejected<br><strong>一旦状态改变，就不会再改变。</strong></li>
+</ul>
+</li>
+</ul>
+<p>有了 Promise 对象，可以将异步操作以同步操作的流程表达出来，避免了层层嵌套的回调函数（callback hell）。</p>
+<p>Promise 一旦新建就会立即执行，无法中途取消。如果不设置回调函数，Promise 内部抛出的错误不会反应到外部。</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/07/24/Html5-article-与-section-标签/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Html5 article 与 section 标签</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="ES6-Promise-对象" data-title="ES6 Promise 对象" data-url="http://yoursite.com/2016/07/27/ES6-Promise-对象/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"tingandpeng"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
 
 </div>
       <footer id="footer">
@@ -240,9 +306,9 @@
 		mathjax: false,
 		animate: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false
 	}
