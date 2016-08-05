@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>ES6 Iterator | Tingandpeng</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="一、 Iterator 的概念迭代器（Iterator）是一个接口，为各种不同的数据结构提供统一的访问机制。任何数据只要部署了 Iterator 接口，就可以完成遍历操作。迭代器的作用有：
+
+为各种数据结构提供一个统一的、简便的访问接口；
+使数据结构成员能够按某种次序排列；
+ES6 创造了一种新的遍历命令 for...of 循环，Iterator 接口主要供 for…of 消费。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ES6 Iterator">
+<meta property="og:url" content="http://yoursite.com/2016/08/04/ES6-Iterator/index.html">
+<meta property="og:site_name" content="Tingandpeng">
+<meta property="og:description" content="一、 Iterator 的概念迭代器（Iterator）是一个接口，为各种不同的数据结构提供统一的访问机制。任何数据只要部署了 Iterator 接口，就可以完成遍历操作。迭代器的作用有：
+
+为各种数据结构提供一个统一的、简便的访问接口；
+使数据结构成员能够按某种次序排列；
+ES6 创造了一种新的遍历命令 for...of 循环，Iterator 接口主要供 for…of 消费。">
+<meta property="og:updated_time" content="2016-08-05T06:35:19.359Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ES6 Iterator">
+<meta name="twitter:description" content="一、 Iterator 的概念迭代器（Iterator）是一个接口，为各种不同的数据结构提供统一的访问机制。任何数据只要部署了 Iterator 接口，就可以完成遍历操作。迭代器的作用有：
+
+为各种数据结构提供一个统一的、简便的访问接口；
+使数据结构成员能够按某种次序排列；
+ES6 创造了一种新的遍历命令 for...of 循环，Iterator 接口主要供 for…of 消费。">
+  
+    <link rel="alternative" href="/atom.xml" title="Tingandpeng" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="/images/avatar.jpg" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">高鹏</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">Come with me for a little ride, see the shadows passing by</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/categories/life">生活</a></li>
+				        
+							<li><a href="/categories/tech">技术</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/gaoupon" title="github">github</a>
+					        
+								<a class="mail" target="_blank" href="/18046048779@163.com" title="mail">mail</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/ES6/" style="font-size: 17.5px;">ES6</a> <a href="/tags/Express/" style="font-size: 10px;">Express</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Html5/" style="font-size: 10px;">Html5</a> <a href="/tags/Jade/" style="font-size: 10px;">Jade</a> <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/NodeJs/" style="font-size: 15px;">NodeJs</a> <a href="/tags/Stream/" style="font-size: 10px;">Stream</a> <a href="/tags/作用域/" style="font-size: 10px;">作用域</a> <a href="/tags/异步/" style="font-size: 12.5px;">异步</a> <a href="/tags/摄影/" style="font-size: 10px;">摄影</a> <a href="/tags/标签/" style="font-size: 10px;">标签</a> <a href="/tags/概念/" style="font-size: 17.5px;">概念</a> <a href="/tags/测试/" style="font-size: 10px;">测试</a> <a href="/tags/语义化/" style="font-size: 10px;">语义化</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">高鹏</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img src="/images/avatar.jpg" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">高鹏</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">Come with me for a little ride, see the shadows passing by</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/categories/life">生活</a></li>
+		        
+					<li><a href="/categories/tech">技术</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/gaoupon" title="github">github</a>
+			        
+						<a class="mail" target="_blank" href="/18046048779@163.com" title="mail">mail</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-ES6-Iterator" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/08/04/ES6-Iterator/" class="article-date">
+  	<time datetime="2016-08-04T07:16:06.000Z" itemprop="datePublished">2016-08-04</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      ES6 Iterator
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ES6/">ES6</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/概念/">概念</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/tech/">tech</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="一、-Iterator-的概念"><a href="#一、-Iterator-的概念" class="headerlink" title="一、 Iterator 的概念"></a>一、 Iterator 的概念</h1><p>迭代器（Iterator）是一个接口，为各种不同的数据结构提供统一的访问机制。任何数据只要部署了 <code>Iterator</code> 接口，就可以完成遍历操作。<br>迭代器的作用有：</p>
+<ul>
+<li>为各种数据结构提供一个统一的、简便的访问接口；</li>
+<li>使数据结构成员能够按某种次序排列；</li>
+<li>ES6 创造了一种新的遍历命令 <code>for...of</code> 循环，Iterator 接口主要供 for…of 消费。<a id="more"></a>
+</li>
+</ul>
+<p>就拿 for…of 语句来说，它首先调用被遍历对象的 <code>[Symbol.iterator]()</code> 方法，该方法返回一个迭代器对象，<strong>迭代器对象可以是拥有 <code>next</code> 方法的任何对象</strong>。然后， 在 for…of 的每一次循环中，都将调用该迭代器对象上的 next 方法。<br>每一次调用 next 方法，都会返回数据结构的当前成员信息。具体来说就是返回一个包含 value 和 done 两个属性的对象。其中 value 是当前成员的值，done 是一个布尔值，表示遍历是否结束。</p>
+<p>下面的代码实现了一个简单的迭代器对象：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> sampleIterator = &#123;</div><div class="line">  index: <span class="number">0</span>,</div><div class="line">  [<span class="built_in">Symbol</span>.iterator]: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span></div><div class="line">  &#125;,</div><div class="line">  next: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.index &lt; <span class="number">3</span>) &#123;</div><div class="line">      <span class="keyword">return</span> &#123;</div><div class="line">        done: <span class="literal">false</span>,</div><div class="line">        value: <span class="keyword">this</span>.index++</div><div class="line">      &#125;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">      <span class="keyword">return</span> &#123;</div><div class="line">        done: <span class="literal">true</span>,</div><div class="line">        value: <span class="literal">undefined</span></div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> val <span class="keyword">of</span> sampleIterator) &#123;</div><div class="line">  <span class="built_in">console</span>.log(val)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 结果为：</span></div><div class="line"><span class="comment">// 0</span></div><div class="line"><span class="comment">// 1</span></div><div class="line"><span class="comment">// 2</span></div><div class="line"><span class="comment">// [Finished in 2.7s]</span></div></pre></td></tr></table></figure></p>
+<p>上面的代码中，当使用 for…of 遍历 sampleIterator 时，首先调用了该对象的 <code>[Symool.itirator]</code> 方法，该方法返回对象本身。而该对象中包含有 <code>next</code> 方法，所以该对象本身就是一个 Iterator 对象。可以供 for..of 消费。当 this.index &gt;= 3 时，返回 <code>{done: true, value: undefined}</code>, 循环结束。</p>
+<h1 id="二、-数据结构的默认-Iterator-接口"><a href="#二、-数据结构的默认-Iterator-接口" class="headerlink" title="二、 数据结构的默认 Iterator 接口"></a>二、 数据结构的默认 Iterator 接口</h1><p>Iterator 接口的目的，就是为所有的数据结构提供一种统一的访问机制，即 <code>for...of</code> 循环。当使用 for…of 循环遍历某种数据结构时，该循环会自动去寻找 Iterator 接口。<br>ES6 规定，默认的 Iterator 接口就部署在数据结构的 <code>Symbol.iterator</code> 属性。调用该方法，就会得到当前数据结构默认的迭代器生成函数。<br>ES6 中，有三类数据结构原生具备 <code>Iterator</code> 接口：数组、类似数组的对象（如 NodeList ）、Set 和 Map 结构。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">4</span>]</div><div class="line"></div><div class="line"><span class="comment">// 迭代器接口部署在数组的 Symbol.iterator 属性上，调用该属性就可以得到迭代器对象（一个包含 next 函数的对象）</span></div><div class="line"><span class="keyword">var</span> iterator = arr[<span class="built_in">Symbol</span>.iterator]()</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(iterator.next())</div><div class="line"><span class="built_in">console</span>.log(iterator.next())</div><div class="line"><span class="built_in">console</span>.log(iterator.next())</div><div class="line"><span class="built_in">console</span>.log(iterator.next())</div><div class="line"></div><div class="line"><span class="comment">// 输出结果：</span></div><div class="line"><span class="comment">// &#123; value: 1, done: false &#125;</span></div><div class="line"><span class="comment">// &#123; value: 2, done: false &#125;</span></div><div class="line"><span class="comment">// &#123; value: 4, done: false &#125;</span></div><div class="line"><span class="comment">// &#123; value: undefined, done: true &#125;</span></div><div class="line"><span class="comment">// [Finished in 2.6s]</span></div></pre></td></tr></table></figure></p>
+<p>类似数组的对象（<em>存在数值键名和 length 属性</em>），可以直接在 Symbol.iterator 属性上部署数组的 Iterator 接口：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> iterable = &#123;</div><div class="line">  <span class="number">0</span>: <span class="string">'a'</span>,</div><div class="line">  <span class="number">1</span>: <span class="string">'b'</span>,</div><div class="line">  <span class="number">2</span>: <span class="string">'c'</span>,</div><div class="line">  <span class="number">3</span>: <span class="string">'d'</span>,</div><div class="line">  length: <span class="number">4</span>,</div><div class="line">  [<span class="built_in">Symbol</span>.iterator]: <span class="built_in">Array</span>.prototype[<span class="built_in">Symbol</span>.iterator]</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> item <span class="keyword">of</span> iterable) &#123;</div><div class="line">  <span class="built_in">console</span>.log(item)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 输出结果：</span></div><div class="line"><span class="comment">// a</span></div><div class="line"><span class="comment">// b</span></div><div class="line"><span class="comment">// c</span></div><div class="line"><span class="comment">// d</span></div><div class="line"><span class="comment">// [Finished in 2.6 s]</span></div><div class="line"></div><div class="line"><span class="comment">// 如果 iterable 的 length 属性为 3：</span></div><div class="line"><span class="comment">// a</span></div><div class="line"><span class="comment">// b</span></div><div class="line"><span class="comment">// c</span></div><div class="line"><span class="comment">// [Finished in 2.7s]</span></div><div class="line"></div><div class="line"><span class="comment">// 如果 iterable 的 length 属性为 5：</span></div><div class="line"><span class="comment">// a</span></div><div class="line"><span class="comment">// b</span></div><div class="line"><span class="comment">// c</span></div><div class="line"><span class="comment">// d</span></div><div class="line"><span class="comment">// undefined</span></div><div class="line"><span class="comment">// [Finished in 2.7s]</span></div></pre></td></tr></table></figure></p>
+<p><strong>注：</strong>普通对象部署数组的 Symbol.iterator 方法，并没有效果。如果 Symbol.iterator 方法对应的不是遍历器生成函数，解释引擎会报错。</p>
+<h1 id="三、-调用-Iterator-接口的场合"><a href="#三、-调用-Iterator-接口的场合" class="headerlink" title="三、 调用 Iterator 接口的场合"></a>三、 调用 Iterator 接口的场合</h1><p>除了 for…of 循环，还有几个场合会默认调用 Iterator 接口（即 Symbol.iterator).</p>
+<ol>
+<li>解构赋值</li>
+<li>扩展运算符</li>
+<li>yield*</li>
+<li>由于数组遍历调用迭代器接口，所以任何接受数组作为参数的场合，其实都调用了 Iterator 接口：<ul>
+<li>for…of</li>
+<li>Array.from()</li>
+<li>Map(), Set(), WeakMap(), WeakSet()</li>
+<li>Promise.all()</li>
+<li>Promise.race()</li>
+<li>…</li>
+</ul>
+</li>
+</ol>
+<h1 id="四、-for…of-与其它遍历语法比较"><a href="#四、-for…of-与其它遍历语法比较" class="headerlink" title="四、 for…of 与其它遍历语法比较"></a>四、 for…of 与其它遍历语法比较</h1><ul>
+<li><p>for 循环</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; arr.length; i++) &#123;</div><div class="line">  <span class="built_in">console</span>.log(arr[i])</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 这种方法比较麻烦</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>forEach</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">arr.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">item</span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(item)</div><div class="line">&#125;)</div><div class="line"></div><div class="line"><span class="comment">// 这种方法无法中途跳出 forEach 循环，break 或 return 失效</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>for…in</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i <span class="keyword">in</span> arr) &#123;</div><div class="line">  <span class="built_in">console</span>.log(arr[i])</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>  for…in 循环有几个缺点：</p>
+<ul>
+<li>以字符串作为键名，而数组的键名是数值类型</li>
+<li>不仅遍历数字键名，还会遍历手动添加的其它键</li>
+<li>以任意顺序遍历键名</li>
+<li>总之，它主要是为了遍历对象设计的，不适用于遍历数组</li>
+</ul>
+</li>
+<li><p>for…of 优点</p>
+<ul>
+<li>和 for…in 一样简洁，但是没有上面提到的缺点</li>
+<li>可以使用 break、 return 和 continue</li>
+<li>提供了遍历所有数据结构的统一操作接口</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/08/05/ES6-Generator/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          ES6 Generator
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/07/30/NodeJs-测试用例-mocha、-should-以及-supertest/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">NodeJs 测试用例 mocha、 should 以及 supertest</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="ES6-Iterator" data-title="ES6 Iterator" data-url="http://yoursite.com/2016/08/04/ES6-Iterator/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"tingandpeng"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+  </script>
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 高鹏
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+           | 本站访客数<span id="busuanzi_value_site_uv"></span>人次
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+
+<script>
+	var yiliaConfig = {
+		fancybox: false,
+		mathjax: false,
+		animate: false,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+  </div>
+</body>
+</html>
