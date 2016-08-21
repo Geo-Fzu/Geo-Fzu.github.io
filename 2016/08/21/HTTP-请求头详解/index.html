@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>HTTP 请求头详解 | Tingandpeng</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="简介HTTP (Hypertext Transfer Protocol) 是一个为分布式、协同、超媒体信息系统制定的应用层协议。通常，HTTP 消息包括客户端向服务器的请求消息和服务器向客户端的响应消息。这两种类型的消息由一个起始行、一个或多个头域、一个头域结束的空行和可选的消息体组成。其中，HTTP的头域包括通用头、请求头、响应头和实体头这四个部分。每个头域由一个头域的域名，冒号和域值组成。本文">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTTP 请求头详解">
+<meta property="og:url" content="http://yoursite.com/2016/08/21/HTTP-请求头详解/index.html">
+<meta property="og:site_name" content="Tingandpeng">
+<meta property="og:description" content="简介HTTP (Hypertext Transfer Protocol) 是一个为分布式、协同、超媒体信息系统制定的应用层协议。通常，HTTP 消息包括客户端向服务器的请求消息和服务器向客户端的响应消息。这两种类型的消息由一个起始行、一个或多个头域、一个头域结束的空行和可选的消息体组成。其中，HTTP的头域包括通用头、请求头、响应头和实体头这四个部分。每个头域由一个头域的域名，冒号和域值组成。本文">
+<meta property="og:updated_time" content="2016-08-21T09:02:30.044Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HTTP 请求头详解">
+<meta name="twitter:description" content="简介HTTP (Hypertext Transfer Protocol) 是一个为分布式、协同、超媒体信息系统制定的应用层协议。通常，HTTP 消息包括客户端向服务器的请求消息和服务器向客户端的响应消息。这两种类型的消息由一个起始行、一个或多个头域、一个头域结束的空行和可选的消息体组成。其中，HTTP的头域包括通用头、请求头、响应头和实体头这四个部分。每个头域由一个头域的域名，冒号和域值组成。本文">
+  
+    <link rel="alternative" href="/atom.xml" title="Tingandpeng" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?0839a46116d0568d3f1755fd325c5ede";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="/images/avatar.jpg" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">高鹏</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">Come with me for a little ride, see the shadows passing by</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/categories/life">生活</a></li>
+				        
+							<li><a href="/categories/tech">技术</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/gaoupon" title="github">github</a>
+					        
+								<a class="mail" target="_blank" href="/18046048779@163.com" title="mail">mail</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/ES6/" style="font-size: 16px;">ES6</a> <a href="/tags/Express/" style="font-size: 10px;">Express</a> <a href="/tags/HTTP/" style="font-size: 10px;">HTTP</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Html5/" style="font-size: 10px;">Html5</a> <a href="/tags/Jade/" style="font-size: 10px;">Jade</a> <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/NodeJs/" style="font-size: 14px;">NodeJs</a> <a href="/tags/Stream/" style="font-size: 10px;">Stream</a> <a href="/tags/作用域/" style="font-size: 10px;">作用域</a> <a href="/tags/异步/" style="font-size: 12px;">异步</a> <a href="/tags/摄影/" style="font-size: 10px;">摄影</a> <a href="/tags/标签/" style="font-size: 10px;">标签</a> <a href="/tags/概念/" style="font-size: 18px;">概念</a> <a href="/tags/测试/" style="font-size: 10px;">测试</a> <a href="/tags/语义化/" style="font-size: 10px;">语义化</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">高鹏</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img src="/images/avatar.jpg" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">高鹏</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">Come with me for a little ride, see the shadows passing by</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/categories/life">生活</a></li>
+		        
+					<li><a href="/categories/tech">技术</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/gaoupon" title="github">github</a>
+			        
+						<a class="mail" target="_blank" href="/18046048779@163.com" title="mail">mail</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-HTTP-请求头详解" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/08/21/HTTP-请求头详解/" class="article-date">
+  	<time datetime="2016-08-21T03:02:09.000Z" itemprop="datePublished">2016-08-21</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      HTTP 请求头详解
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTTP/">HTTP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/概念/">概念</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/tech/">tech</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>HTTP (Hypertext Transfer Protocol) 是一个为分布式、协同、超媒体信息系统制定的<strong>应用层协议</strong>。通常，HTTP 消息包括客户端向服务器的请求消息和服务器向客户端的响应消息。这两种类型的消息由一个起始行、一个或多个头域、一个头域结束的空行和可选的消息体组成。其中，HTTP的头域包括<code>通用头</code>、<code>请求头</code>、<code>响应头</code>和<code>实体头</code>这四个部分。每个头域由一个头域的域名，冒号和域值组成。<br>本文主要研究客户端向服务器请求消息的部分:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Request       =         Request-Line              ;</div><div class="line">                        *(( general-header        ;</div><div class="line">                         | request-header         ;</div><div class="line">                         | entity-header ) CRLF)  ;</div><div class="line">                        CRLF</div><div class="line">                        [ message-body ]          ;</div></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<hr>
+<h2 id="一、-请求消息中-Request-Line-的结构"><a href="#一、-请求消息中-Request-Line-的结构" class="headerlink" title="一、 请求消息中 Request-Line 的结构"></a>一、 请求消息中 Request-Line 的结构</h2><blockquote>
+<p>A request message from a client to a server includes, within the first line of that message, the method to be applied to the resource, the identifier of the resource, and the protocol version in use.</p>
+</blockquote>
+<p>除了前面提到的，一条从客户端到服务器的请求消息的第一行包括以下这几个内容：请求资源的方法，资源的标识符（URI）和所使用协议的版本号，如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Requset-Line = Method SP Request-URI SP HTTP-Version CRLF</div></pre></td></tr></table></figure>
+<p>我们以请求网易首页 (<a href="http://www.163.com/" target="_blank" rel="external">http://www.163.com/</a>) 的 Requset 消息为例，如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">GET / HTTP/1.1</div><div class="line">Host: www.163.com</div><div class="line">Connection: keep-alive</div><div class="line">Cache-Control: max-age=0</div><div class="line">Upgrade-Insecure-Requests: 1</div><div class="line">User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36</div><div class="line">Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8</div><div class="line">Referer: https://www.baidu.com/link?url=RhiUC8ctmOtA7LLqJ6SrkHdOkWD_l2xnFR4uJkrxcAi&amp;wd=&amp;eqid=fe2aa5df000998f30000000557b96de6</div><div class="line">Accept-Encoding: gzip, deflate, sdch</div><div class="line">Accept-Language: zh-CN,zh;q=0.8</div><div class="line">Cookie: _ntes_nnid=...</div></pre></td></tr></table></figure>
+<p>我们可以知道，请求的方法为 <code>GET</code>, URI 为 <code>/</code>, HTTP 版本号为 <code>HTTP/1.1</code>。其中，请求方法除了上述的 GET 外，常用的还有 POST、PUT、DELETE等。具体可以参照W3C标准： <a href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html" target="_blank" rel="external">https://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html</a>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">Method         = &quot;OPTIONS&quot;                ;</div><div class="line">               | &quot;GET&quot;                    ;</div><div class="line">               | &quot;HEAD&quot;                   ;</div><div class="line">               | &quot;POST&quot;                   ;</div><div class="line">               | &quot;PUT&quot;                    ;</div><div class="line">               | &quot;DELETE&quot;                 ;</div><div class="line">               | &quot;TRACE&quot;                  ;</div><div class="line">               | &quot;CONNECT&quot;                ;</div><div class="line">               | extension-method</div><div class="line">extension-method = token</div></pre></td></tr></table></figure>
+<h2 id="二、-请求头-Request-Header-Fields"><a href="#二、-请求头-Request-Header-Fields" class="headerlink" title="二、 请求头 Request Header Fields"></a>二、 请求头 Request Header Fields</h2><blockquote>
+<p>The request-header fields allow the client to pass additional information about the request, and about the client itself, to the server. These fields act as request modifiers, with semantics equivalent to the parameters on a programming language method invocation.</p>
+</blockquote>
+<p>请求头域允许客户端向服务器传递附加信息，包括关于请求消息的和关于客户端自己的。这些头域就像是请求消息的修饰器，在语法上等价于编程语言中方法调用的参数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">request-header = Accept                   ;</div><div class="line">               | Accept-Charset           ;</div><div class="line">               | Accept-Encoding          ;</div><div class="line">               | Accept-Language          ;</div><div class="line">               | Authorization            ;</div><div class="line">               | Expect                   ; </div><div class="line">               | From                     ;</div><div class="line">               | Host                     ;</div><div class="line">               | If-Match                 ;</div><div class="line">               | If-Modified-Since        ;</div><div class="line">               | If-None-Match            ;</div><div class="line">               | If-Range                 ;</div><div class="line">               | If-Unmodified-Since      ;</div><div class="line">               | Max-Forwards             ;</div><div class="line">               | Proxy-Authorization      ;</div><div class="line">               | Range                    ;</div><div class="line">               | Referer                  ;</div><div class="line">               | TE                       ;</div><div class="line">               | User-Agent               ;</div></pre></td></tr></table></figure>
+<p>以上是请求头中各种头域的名称，关于每个域名的详细功能和取值范围，可以参考 <a href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html" target="_blank" rel="external">https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html</a>。</p>
+<p>我们还是以上面的网易的首页请求消息分析一下各个头域的作用：</p>
+<ul>
+<li><code>Host</code>: 指定请求的服务器的域名和端口号</li>
+<li><code>Connection</code>: 表示是否需要持久连接。（HTTP 1.1默认进行持久连接）</li>
+<li><code>Cache-Control</code>: 指定请求和响应遵循的缓存机制</li>
+<li><code>Upgrade-Insecure-Requests</code>: 让浏览器自动升级请求 （由 http 升级成 https）</li>
+<li><code>User-Agent</code>: 包含发出请求的用户信息</li>
+<li><code>Accept</code>: 指定客户端能够接收的内容类型</li>
+<li><code>Referer</code>: 先前网页的地址，当前请求网页紧随其后,即来路</li>
+<li><code>Accept-Encoding</code>: 指定浏览器可以支持的web服务器返回内容压缩编码类型</li>
+<li><code>Accept-Language</code>: 浏览器可接受的语言</li>
+<li><code>Cookie</code>: HTTP请求发送时，会把保存在该请求域名下的所有cookie值一起发送给web服务器</li>
+</ul>
+<h2 id="三、-请求正文-message-body"><a href="#三、-请求正文-message-body" class="headerlink" title="三、 请求正文 message-body"></a>三、 请求正文 message-body</h2><p>请求头和请求正文之间要有一个 <code>CRLF</code>， 这是必须的，表示请求头的结束和请求正文的开始。请求正文中包含用户提交的信息，例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">username=gaopeng&amp;age=25</div></pre></td></tr></table></figure>
+<p>在上面的例子中，由于只是访问了首页而没有进行登录操作，所以请求消息中没有提交数据给服务器。</p>
+<h2 id="四、-总结"><a href="#四、-总结" class="headerlink" title="四、 总结"></a>四、 总结</h2><p>自此，参照了 W3C 标准中的 HTTP 请求消息规范，我们理解了一条客户端发往服务器的请求消息中包含了哪些内容。主要包括：</p>
+<ol>
+<li>Request-Line；</li>
+<li>请求头；</li>
+<li>请求正文。</li>
+</ol>
+<p>这些是与 request 有关的内容，在后续的部分中，我会继续整理有关 response 有关的内容，即由服务器发往客户端的响应消息。</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/08/05/ES6-Generator/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">ES6 Generator</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="HTTP-请求头详解" data-title="HTTP 请求头详解" data-url="http://yoursite.com/2016/08/21/HTTP-请求头详解/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"tingandpeng"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+  </script>
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 高鹏
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+           | 本站访客数<span id="busuanzi_value_site_uv"></span>人次
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+
+<script>
+	var yiliaConfig = {
+		fancybox: false,
+		mathjax: false,
+		animate: false,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+  </div>
+</body>
+</html>

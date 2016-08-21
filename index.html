@@ -113,7 +113,7 @@ var _hmt = _hmt || [];
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/ES6/" style="font-size: 17.5px;">ES6</a> <a href="/tags/Express/" style="font-size: 10px;">Express</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Html5/" style="font-size: 10px;">Html5</a> <a href="/tags/Jade/" style="font-size: 10px;">Jade</a> <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/NodeJs/" style="font-size: 15px;">NodeJs</a> <a href="/tags/Stream/" style="font-size: 10px;">Stream</a> <a href="/tags/作用域/" style="font-size: 10px;">作用域</a> <a href="/tags/异步/" style="font-size: 12.5px;">异步</a> <a href="/tags/摄影/" style="font-size: 10px;">摄影</a> <a href="/tags/标签/" style="font-size: 10px;">标签</a> <a href="/tags/概念/" style="font-size: 17.5px;">概念</a> <a href="/tags/测试/" style="font-size: 10px;">测试</a> <a href="/tags/语义化/" style="font-size: 10px;">语义化</a>
+						<a href="/tags/ES6/" style="font-size: 16px;">ES6</a> <a href="/tags/Express/" style="font-size: 10px;">Express</a> <a href="/tags/HTTP/" style="font-size: 10px;">HTTP</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Html5/" style="font-size: 10px;">Html5</a> <a href="/tags/Jade/" style="font-size: 10px;">Jade</a> <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/NodeJs/" style="font-size: 14px;">NodeJs</a> <a href="/tags/Stream/" style="font-size: 10px;">Stream</a> <a href="/tags/作用域/" style="font-size: 10px;">作用域</a> <a href="/tags/异步/" style="font-size: 12px;">异步</a> <a href="/tags/摄影/" style="font-size: 10px;">摄影</a> <a href="/tags/标签/" style="font-size: 10px;">标签</a> <a href="/tags/概念/" style="font-size: 18px;">概念</a> <a href="/tags/测试/" style="font-size: 10px;">测试</a> <a href="/tags/语义化/" style="font-size: 10px;">语义化</a>
 					</div>
 				</section>
 				
@@ -174,6 +174,68 @@ var _hmt = _hmt || [];
 </nav>
 
       <div class="body-wrap">
+  
+    <article id="post-HTTP-请求头详解" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/08/21/HTTP-请求头详解/" class="article-date">
+  	<time datetime="2016-08-21T03:02:09.000Z" itemprop="datePublished">2016-08-21</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/08/21/HTTP-请求头详解/">HTTP 请求头详解</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>HTTP (Hypertext Transfer Protocol) 是一个为分布式、协同、超媒体信息系统制定的<strong>应用层协议</strong>。通常，HTTP 消息包括客户端向服务器的请求消息和服务器向客户端的响应消息。这两种类型的消息由一个起始行、一个或多个头域、一个头域结束的空行和可选的消息体组成。其中，HTTP的头域包括<code>通用头</code>、<code>请求头</code>、<code>响应头</code>和<code>实体头</code>这四个部分。每个头域由一个头域的域名，冒号和域值组成。<br>本文主要研究客户端向服务器请求消息的部分:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Request       =         Request-Line              ;</div><div class="line">                        *(( general-header        ;</div><div class="line">                         | request-header         ;</div><div class="line">                         | entity-header ) CRLF)  ;</div><div class="line">                        CRLF</div><div class="line">                        [ message-body ]          ;</div></pre></td></tr></table></figure></p>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTTP/">HTTP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/概念/">概念</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/tech/">tech</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/08/21/HTTP-请求头详解/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-ES6-Generator" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -773,68 +835,6 @@ var _hmt = _hmt || [];
       
         <p class="article-more-link">
           <a  href="/2016/07/20/作用域与作用域链/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-JavaScript-this关键字" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/07/19/JavaScript-this关键字/" class="article-date">
-  	<time datetime="2016-07-19T03:09:38.000Z" itemprop="datePublished">2016-07-19</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/07/19/JavaScript-this关键字/">JavaScript this关键字</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><code>this</code>是Javascript语言的一个关键字,它代表函数运行时，自动生成的一个内部对象，只能在函数内部使用。随着函数使用场合不同，<code>this</code>的值会发生变化。但有一个总的原则，那就是<code>this</code>指的是<strong>调用函数的那个对象</strong>。<br>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/概念/">概念</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/tech/">tech</a>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a  href="/2016/07/19/JavaScript-this关键字/#more">more >></a>
         </p>
       
       <div class="clearfix"></div>
