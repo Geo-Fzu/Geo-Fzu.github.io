@@ -1,0 +1,12 @@
+# system
+.DS_Store
+Thumbs.db
+
+# develop
+/node_modules/
+/public/
+/db.json
+
+# temp
+*.log
+.deploy*/
