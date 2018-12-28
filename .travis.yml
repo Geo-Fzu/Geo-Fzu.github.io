@@ -14,6 +14,9 @@ cache:
     - node_modules
 # tarvis生命周期执行顺序详见官网文档
 before_install:
+  - openssl aes-256-cbc -K $encrypted_2c430460807a_key -iv $encrypted_2c430460807a_iv
+    -in id_rsa.enc -out ~/.ssh/id_rsa -d
+  - chmod 600 ~/.ssh/id_rsa
   - git config --global user.name "gaoupon"
   - git config --global user.email "gaoupon@163.com"
   # 由于使用了yarn，所以需要下载，如不用yarn这两行可以删除
@@ -27,6 +30,7 @@ script:
   - hexo clean
   - hexo generate
 after_success:
+  - scp -o stricthostkeychecking=no -r public/* travis@47.99.132.117:/home/travis/blog
   - cd ./public
   - git init
   - git add --all .

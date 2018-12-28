@@ -32,7 +32,7 @@ scheme: Paradox
 
 # UI & UX: slogan, color, effect
 uiux:
-  slogan: "Come with me for a little ride, see the shadows passing by."
+  slogan: "Come with me for a little ride, see the shadows passing by~"
   theme_color: "#0097A7"
   theme_sub_color: "#00838F"
   hyperlink_color: "#00838F"
