@@ -97,7 +97,7 @@ card_elevation: 2
 # Copyright
 # Specify the date when the site was setup.
 #    For example, if you set it as 2015, then footer will show '© 2015 - 2017'
-copyright_since:
+copyright_since: 2016
 
 # Footer Text
 # You can specify the text you want to show in footer, HTML tag is supported.
@@ -123,8 +123,8 @@ qrcode:
 #    Prettify
 #        theme: # Available value in /source/css/prettify/[theme].min.css
 prettify:
-  enable: false
-  theme: "github-v2"
+  enable: true
+  theme: "tranquil-heart"
 
 #    Hanabi (https://github.com/egoist/hanabi)
 #        line_number: [true/false] # Show line number for code block
@@ -208,20 +208,20 @@ sidebar:
     icon: inbox
     divider: false
   categories:
-    use: false
+    use: true
     icon: chrome_reader_mode
     divider: false
   pages:
-    #About:
-    #link: "/about"
-    #icon: person
-    #divider: false
+    # About:
+    #   link: "/about"
+    #   icon: person
+    #   divider: false
   article_num:
     use: false
     divider: false
   footer:
-    divider: true
-    theme: true
+    divider: false
+    theme: false
     support: false
     feedback: false
     material: false
