@@ -31,7 +31,7 @@ Promise 一旦新建就会立即执行，无法中途取消。如果不设置回
 - Promise 的构造
   Promise 是一个构造函数，用来生成 Promise 实例。下面代码构造了一个 Promise 实例：
 
-```javascript
+```js
 var promise = new Promise(function(resolve, reject) {
     // Promise 构造函数接收一个函数作为参数，该函数的两个参数分别是 resolve 和 reject，这是两个函数。
 
@@ -51,7 +51,7 @@ var promise = new Promise(function(resolve, reject) {
 - Promise 的使用
   Promise 实例生成之后，可以用 `then` 方法分别指定 Resolved 和 Rejected 状态的回调函数：
 
-```javascript
+```js
 promise.then(function(value) {
     // promise 中的异步操作成功时执行，即 Promise 状态变为 Resolved，value 为 resolve 返回的值
     }，function(err) {
@@ -64,7 +64,7 @@ promise.then(function(value) {
 
 - 简单例子：
 
-```javascript
+```js
 function timeout(ms) {
   return new Promise((resolve, reject) => {
     setTimeout(resolve, ms, "done");
@@ -81,7 +81,7 @@ timeout(100).then(value => {
 
 - Promise 创建后立刻执行：
 
-```javascript
+```js
 let promise = new Promise(function(resolve, reject) {
   console.log("Promise");
   resolve();
@@ -105,7 +105,7 @@ console.log("Hi!");
   `reject` 通常接收 Error 对象的实例作为参数，表示抛出的错误；`resolve` 函数的参数可以是正常的值，还可能是另一个 Promise 对象实例。
   这表示异步操作的结果可能是一个值，也可能是另一个异步操作：
 
-```javascript
+```js
 var p1 = new Promise(function(resolve, reject) {
   // ...
 });
@@ -121,7 +121,7 @@ var p2 = new Promise(function(resolve, reject) {
 这时， p1 的状态就会传递给 p2，也就是说，p1 决定了 p2 的状态。
 如果 p1 状态是 Pending，那么 p2 的回调函数就会等待 p1 的状态改变；如果 p1 的状态已经是 Resolved 或者 Rejected，那么 p2 的回调函数将会立即执行:
 
-```javascript
+```js
 var p1 = new Promise(function(resolve, reject) {
   setTimeout(() => {
     console.log("promise in p1");
@@ -153,7 +153,7 @@ then 方法的第一个参数是 `Resolved` 状态的回调函数，第二个参
 **then 方法返回的是一个新的 Promise 实例（注意，不是原来那个 Promise 实例）。因此可以采用链式写法，即 then 方法后面再调用另一个 then 方法。**
 采用链式的 then，可以指定一组按照次序调用的回调函数。这时，前一个回调函数，有可能返回的还是一个 Promise 对象（即有异步操作），这时后一个回调函数，就会等待该 Promise 对象的状态发生变化，才会被调用：
 
-```javascript
+```js
 var promise = new Promise(function(resolve, reject) {
   setTimeout(resolve, 1000, "promise chain");
 });
@@ -195,7 +195,7 @@ promise
 
 Promise.protype.catch 与 .then(null, rejectFun) 是相同的作用，用于指定发生错误时的回调函数。
 
-```javascript
+```js
 promise
   .then(function() {
     // ...
@@ -207,7 +207,7 @@ promise
 
 下面是一个例子：
 
-```javascript
+```js
 var p1 = new Promise(function(resolve, reject) {
   setTimeout(() => {
     console.log("promise in p1");
@@ -237,7 +237,7 @@ Promise 对象的错误具有*冒泡*性质，会一直向后传递，直到被�
 
 Promise.all 方法用于将多个 Promise 实例，包装成一个新的 Promise 实例。
 
-```javascript
+```js
 var p = Promise.all([p1, p2, p3]);
 ```
 
@@ -249,7 +249,7 @@ var p = Promise.all([p1, p2, p3]);
 
 Promise.race 方法同样是将多个 Promise 实例，包装成一个新的 Promise 实例。
 
-```javascript
+```js
 var p = Promise.race([p1, p2, p3]);
 ```
 
@@ -262,7 +262,7 @@ var p = Promise.race([p1, p2, p3]);
 - 如果参数是 Promise 实例，那么 Promise.resolve 将不做任何修改、原封不动返回这个实例。
 - 如果参数是 `thenable` 对象，例如：
 
-```javascript
+```js
 let thenable = {
   then: function(resolve, reject) {
     resolve("thenable");

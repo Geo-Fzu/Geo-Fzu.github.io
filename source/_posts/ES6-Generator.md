@@ -24,7 +24,7 @@ Generator 函数的调用方法与普通函数一样，也是在函数名后面�
 
 在 Iterator 那一篇文章中我们有说过，调用对象的 Symbol.iterator 方法，会返回该对象的一个迭代器对象。由于 Generator 就是一个迭代器生成函数，所以可以把它复制给 对象的 Symbol.iterator 属性，部署该对象的 Iterator 接口:
 
-```javascript
+```js
 var Iterable = {};
 
 Iterable[Symbol.iterator] = function*() {
@@ -41,7 +41,7 @@ console.log(...Iterable);
 
 之前介绍过，for...of 循环、扩展运算符、结构赋值等都是调用的迭代器接口。所以我们可以直接将 Generator 返回的对象作为参数，传入这些方法中：
 
-```javascript
+```js
 function* gen() {
   yield 1;
   yield 2;
@@ -58,7 +58,7 @@ console.log(...gen());
 
 `return` 方法可以返回给定的值，并且中介遍历 Generator 函数。如果 return 不提供参数，则返回值的 value 属性为 undefined。
 
-```javascript
+```js
 function* gen() {
   yield 1;
   yield 2;
@@ -81,7 +81,7 @@ console.log(g.next());
 
 yield\* 用来遍历一个迭代器对象：
 
-```javascript
+```js
 function* inner() {
   yield "hello!";
 }
@@ -124,7 +124,7 @@ Generator 函数的暂停执行的效果，意味着可以把异步操作写在 
 
 Ajax 是典型的异步操作，通过 Generator 函数部署 Ajax 操作，可以用同步的方式表达。
 
-```javascript
+```js
 function* main() {
   var result = yield request("http://some.url");
   var resp = JSON.parse(result);

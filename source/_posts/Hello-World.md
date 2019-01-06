@@ -5,7 +5,7 @@ categories: life
 tags: [Hexo]
 ---
 
-```javascript
+```js
 console.log("hello world");
 console.log("hello chiaki");
 ```

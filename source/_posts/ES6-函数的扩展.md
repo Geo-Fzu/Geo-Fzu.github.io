@@ -21,13 +21,13 @@ categories: tech
    - ### 基本用法
      ES6 允许使用“箭头”(=>)定义函数。
 
-   ```javascript
+   ```js
    var f = v => v;
    ```
 
    上面的箭头函数等同于：
 
-   ```javascript
+   ```js
    var f = function(v) {
      return v;
    };
@@ -35,7 +35,7 @@ categories: tech
 
    如果箭头函数不需要参数或需要多个参数，就使用一个圆括号代表参数部分。
 
-   ```javascript
+   ```js
    var f = () => 5;
    //等同于
    var f = function() {
@@ -51,7 +51,7 @@ categories: tech
 
    如果箭头函数的代码块部分多于一条语句，就要使用大括`{}`将它们括起来，并且使`return`语句返回。
 
-   ```javascript
+   ```js
    var sum = (num1, num2) => {
      return num1 + num2;
    };
@@ -59,7 +59,7 @@ categories: tech
 
    由于大括号被解释为代码块，所以如果箭头函数直接返回一个对象，必须在外面加上括号。
 
-   ```javascript
+   ```js
    var getTempObj = id => ({
      id: id,
      name: "temp"
@@ -79,7 +79,7 @@ categories: tech
    - ### 基本用法
      ES6 允许为函数的参数设置默认值，即直接写在参数定义的后面。
 
-   ```javascript
+   ```js
    function log(x, y = "World") {
      console.log(x, y);
    }
@@ -91,7 +91,7 @@ categories: tech
 
    另一个例子：
 
-   ```javascript
+   ```js
    function Point(x = 0, y = 0) {
      this.x = x;
      this.y = y;
@@ -108,7 +108,7 @@ categories: tech
    - ### 与解构赋值默认值结合使用
      参数默认值可以与解构赋值的默认值，结合起来使用。
 
-   ```javascript
+   ```js
    function foo({ x, y = 5 }) {
      console.log(x, y);
    }
@@ -122,7 +122,7 @@ categories: tech
    上面的代码使用了对象的解构赋值默认值，而没有使用函数参数的默认值。只有当函数`foo`的参数是一个对象时，变量`x`和`y`才会通过解构赋值产生。如果函数`foo`调用时参数不是对象，变量`x`和`y`就不会产生。
    下面是另一个对象的解构赋值默认值的例子。
 
-   ```javascript
+   ```js
    function fetch(url, { body = "", method = "GET", headers = {} }) {
      console.log(method);
    }
@@ -137,7 +137,7 @@ categories: tech
    - ### 作用域
      如果参数默认值是一个变量，则该变量所处的作用域，与其他变量的作用域规则是一样的，即先是当前函数的作用域，然后才是全局作用域。
 
-   ```javascript
+   ```js
    var x = 1;
 
    function f(x, y = x) {
@@ -154,7 +154,7 @@ categories: tech
    - ### 基本用法
      ES6 引入 rest 参数（形式为“...变量名”），用于获取函数的多余参数，这样就不需要使用 arguments 对象了。rest 参数搭配的变量是一个数组，该变量将多余的参数放入数组中。
 
-   ```javascript
+   ```js
    function add(...values) {
      let sum = 0;
 
@@ -172,7 +172,7 @@ categories: tech
 
    下面是一个 rest 参数代替 arguments 变量的例子：
 
-   ```javascript
+   ```js
    // arguments 变量的写法
    function sortNumbers() {
      return Array.prototype.slice.call(arguments).sort();
@@ -184,7 +184,7 @@ categories: tech
 
    **注意， rest 参数之后不能再有其它参数（即只能是最后一个参数），否则会报错。**
 
-   ```javascript
+   ```js
    function (a, ...b, c)
        // ...
    }
@@ -196,7 +196,7 @@ categories: tech
    - ### 基本用法
      扩展运算符（spread）是三个点（...）。它好比 rest 参数的逆运算，将一个数组转为用逗号分隔的参数序列。
 
-   ```javascript
+   ```js
    console.log(...[1, 2, 3])
    // 1 2 3
 
@@ -209,7 +209,7 @@ categories: tech
 
    该运算符主要用于函数调用：
 
-   ```javascript
+   ```js
    // 第一个示例：
    function push(array, ...items) {
      array.push(...items);
@@ -231,7 +231,7 @@ categories: tech
    - ### 基本用法
      函数的 name 属性，返回该函数的函数名。
 
-   ```javascript
+   ```js
    function foo() {}
    console.log(foo.name);
    // "foo"
@@ -241,7 +241,7 @@ categories: tech
 
    需要注意的是， ES6 对这个属性的行为做出了一些修改。如果将一个匿名函数赋值给一个变量， ES5 的 name 属性，会返回空字符串，而 ES6 的 name 属性会返回实际的函数名：
 
-   ```javascript
+   ```js
    var func1 = function() {};
 
    // ES5
@@ -253,7 +253,7 @@ categories: tech
 
    如果将一个具名函数赋值给一个变量，则 ES5 和 ES6 的 name 属性都返回这个具名函数原本的名字：
 
-   ```javascript
+   ```js
    const bar = function baz() {};
 
    // ES5
@@ -265,13 +265,13 @@ categories: tech
 
    Function 构造函数返回的函数实例，name 属性的值为“anonymous”：
 
-   ```javascript
+   ```js
    new Function().name; // "anonymous"
    ```
 
    bind 返回的函数，name 属性值会加上“bound ”前缀：
 
-   ```javascript
+   ```js
    function foo() {}
    foo
      .bind({})
@@ -290,7 +290,7 @@ categories: tech
 
    函数绑定运算符是并排的两个双冒号（::），双冒号左边是一个对象，右边是一个函数。该运算符会自动将左边的对象，作为上下文环境（即 this 对象），绑定到右边的函数上面：
 
-   ```javascript
+   ```js
    foo::bar;
    // 等同于
    bar.bind(foo);
@@ -307,7 +307,7 @@ categories: tech
 
    如果双冒号左边为空，右边是一个对象的方法，则等于将该方法绑定在该对象上面：
 
-   ```javascript
+   ```js
    var method = obj::obj.foo;
    // 等同于
    var method = ::obj.foo;

@@ -11,7 +11,7 @@ Jade 是一个高性能的模板引擎，它是用 JavaScript 实现的，并且
 
 1. ## 在 Express 使用 Jade 模板引擎
 
-   ```javascript
+   ```js
    app.set("views", views);
    // views 为 Jade 文件的存放目录，例如：var views = path.join(__dirname, 'view')
    app.set("view engine", "jade");

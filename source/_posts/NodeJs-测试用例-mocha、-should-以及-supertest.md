@@ -22,7 +22,7 @@ Mocha 是一个功能丰富的 JavaScript 测试框架，它能运行在 Node.js
 
 让我们从一个最简单的例子开始：
 
-```javascript
+```js
 // unit.test.js
 describe("mocha test describe", () => {
   it("mocha test it", () => {});
@@ -48,7 +48,7 @@ describe("mocha test describe", () => {
 
 我们尝试一下：
 
-```javascript
+```js
 // unit.test.js
 describe("mocha test describe", () => {
   it("mocha test it success", () => {});
@@ -78,7 +78,7 @@ describe("mocha test describe", () => {
 
 Mocha 还提供了几种钩子函数 `before()`, `after()`, `beforeEach()`, 和 `afterEach()`。什么是钩子函数呢？用一句话来形容一下：_钩子是将需要执行的函数或者其他一系列动作注册到一个统一的入口，程序通过调用这个钩子来执行这些已经注册的函数_。还是以上面的代码举例：
 
-```javascript
+```js
 // unit.test.js
 describe("mocha test describe", () => {
   // 钩子函数，就是在函数进程中的某个时机被触发的函数
@@ -138,7 +138,7 @@ NodeJs 就内置了一套断言库，可以通过 `require('assert')` 来调用�
 
 为了满足以上条件，我们编写了用例测试代码：
 
-```javascript
+```js
 // unit.test.js
 var absolute = require("../unittest.js").absolute;
 const should = require("should");
@@ -174,7 +174,7 @@ describe("absolute module test", () => {
 
 如果以下是我们实现的模块：
 
-```javascript
+```js
 // unit.js
 function absolute(n) {
   if (n < 0) {
@@ -218,7 +218,7 @@ exports.absolute = absolute;
 
 显然没有通过后面三条测试条件，于是我们修改代码 unit.js：
 
-```javascript
+```js
 // unit.js
 function absolute(n) {
   if (typeof n !== "number") {
@@ -262,7 +262,7 @@ exports.absolute = absolute;
 在开发 Web 项目的时候，要测试某一个 API，如：/user，到底怎么编写测试用例呢？
 使用：supertest
 
-```javascript
+```js
 var app = require("../app");
 var supertest = require("supertest");
 // 看下面这句，这是关键一句。得到的 request 对象可以直接按照
@@ -359,7 +359,7 @@ describe("test/app.test.js", function() {
 
 其中 app.js 为：
 
-```javascript
+```js
 var express = require("express");
 
 // 与之前一样

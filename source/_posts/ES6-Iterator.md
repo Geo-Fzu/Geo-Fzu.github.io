@@ -20,7 +20,7 @@ categories: tech
 
 下面的代码实现了一个简单的迭代器对象：
 
-```javascript
+```js
 var sampleIterator = {
   index: 0,
   [Symbol.iterator]: function() {
@@ -60,7 +60,7 @@ Iterator 接口的目的，就是为所有的数据结构提供一种统一的�
 ES6 规定，默认的 Iterator 接口就部署在数据结构的 `Symbol.iterator` 属性。调用该方法，就会得到当前数据结构默认的迭代器生成函数。
 ES6 中，有三类数据结构原生具备 `Iterator` 接口：数组、类似数组的对象（如 NodeList ）、Set 和 Map 结构。
 
-```javascript
+```js
 let arr = [1, 2, 4];
 
 // 迭代器接口部署在数组的 Symbol.iterator 属性上，调用该属性就可以得到迭代器对象（一个包含 next 函数的对象）
@@ -81,7 +81,7 @@ console.log(iterator.next());
 
 类似数组的对象（_存在数值键名和 length 属性_），可以直接在 Symbol.iterator 属性上部署数组的 Iterator 接口：
 
-```javascript
+```js
 let iterable = {
   0: "a",
   1: "b",
@@ -138,7 +138,7 @@ for (var item of iterable) {
 
 - for 循环
 
-```javascript
+```js
 for (var i = 0; i < arr.length; i++) {
   console.log(arr[i]);
 }
@@ -148,7 +148,7 @@ for (var i = 0; i < arr.length; i++) {
 
 - forEach
 
-```javascript
+```js
 arr.forEach(function(item) {
   console.log(item);
 });
@@ -158,7 +158,7 @@ arr.forEach(function(item) {
 
 - for...in
 
-```javascript
+```js
 for (let i in arr) {
   console.log(arr[i]);
 }

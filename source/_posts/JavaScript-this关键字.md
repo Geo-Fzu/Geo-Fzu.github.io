@@ -14,7 +14,7 @@ categories: tech
 1. ### 纯粹的函数调用：
    这是函数最通常的用法，属于全局性调用，因此`this`就代表全局对象 Global（浏览器中的 window）。
    - 示例：
-     ```javascript
+     ```js
      var x = 0;
      function test() {
        console.log(this.x);
@@ -26,7 +26,7 @@ categories: tech
 2. ### 作为对象方法调用：
    函数还可以作为某个对象的方法调用，这时`this`就指这个上级对象,即调用该方法的对象。
    - 示例：
-     ```javascript
+     ```js
      function test() {
        console.log(this.x);
      }
@@ -40,7 +40,7 @@ categories: tech
 3. ### 在构造函数中调用：
    构造函数，就是通过这个函数生成一个新对象 object。这时，this 就指这个新对象。
    - 示例：
-     ```javascript
+     ```js
      function Foo() {
        this.x = 1;
      }
@@ -52,7 +52,7 @@ categories: tech
 4. ### 在 apply 和 call 中调用：
    Function.prototype.apply()是函数对象的一个方法，它的作用是改变函数的调用对象，它的第一个参数就表示改变后的调用这个函数的对象。
    - 示例：
-     ```javascript
+     ```js
      var x = 0;
      function test() {
        console.log(this.x);
@@ -68,7 +68,7 @@ categories: tech
 5. ### 箭头函数中的 this：
    箭头函数是 ES6 中的新特性，函数体内的`this`对象，就是定义时所在的对象，而不是使用时所在的对象。
    - 示例：
-     ```javascript
+     ```js
      //比如Mongoose 定义 Schema 的 statics/methods 的时候:
      XXXSchema.statics.list = cb => {
        return this.find().exec(cb);

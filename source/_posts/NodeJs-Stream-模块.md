@@ -33,7 +33,7 @@ Node.js 中有四种基本的流的类型：
 可读流通过 `push` 方法产生数据，存入 readable 的缓存中。当调用 push(null) 时，便结束流的数据产生。正常情况下，需要为流实例提供一个 `_read` 方法，在这个方法中使用 `push` 产生的数据。
 在需要数据时，流的内部会自动调用 `_read` 方法来向缓存中添加数据。
 
-```javascript
+```js
 var stream = require("stream");
 var readable = Stream.Readable();
 var source = ["a", "b", "c"];
@@ -56,7 +56,7 @@ readable._read = function() {
 - end 事件
   `end` 事件在流中没有可以消耗的数据时被触发。
 
-  ```javascript
+  ```js
   // readable 定义见上面代码
   readable.on("end", function() {
     console.log("end");
@@ -85,7 +85,7 @@ readable._read = function() {
 
   readable 使用 pipe() 后，将会自动转化为 `flowing` 模式。**read.pipe() 方法返回一个对 destination 流的引用**，这样我们就可以进行链式调用了。下面是一个 `gulp` 中链式调用的例子：
 
-  ```javascript
+  ```js
   gulp
     .src("client/templates/*.jade")
     .pipe(jade())
