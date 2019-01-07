@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang=en>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="this是 Javascript 语言的一个关键字,它代表函数运行时，自动生成的一个内部对象，只能在函数内部使用。随着函数使用场合不同，this的值会发生变化。但有一个总的原则，那就是this指的是调用函数的那个对象。">
+<meta name="keywords" content="JavaScript,概念">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript this关键字">
+<meta property="og:url" content="http://upon.ink/2016/07/19/JavaScript-this关键字/index.html">
+<meta property="og:site_name" content="upon.ink">
+<meta property="og:description" content="this是 Javascript 语言的一个关键字,它代表函数运行时，自动生成的一个内部对象，只能在函数内部使用。随着函数使用场合不同，this的值会发生变化。但有一个总的原则，那就是this指的是调用函数的那个对象。">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-01-07T17:29:30.307Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript this关键字">
+<meta name="twitter:description" content="this是 Javascript 语言的一个关键字,它代表函数运行时，自动生成的一个内部对象，只能在函数内部使用。随着函数使用场合不同，this的值会发生变化。但有一个总的原则，那就是this指的是调用函数的那个对象。">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.png">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.png">
+          
+        
+    
+    <!-- title -->
+    <title>JavaScript this关键字</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/">Category</a></li>
+         
+          <li><a href="/tags/">Tag</a></li>
+        
+      </ul>
+    </span>
+    <br>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2016/07/20/作用域与作用域链/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2016/07/19/ES6-函数的扩展/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://upon.ink/2016/07/19/JavaScript-this关键字/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://upon.ink/2016/07/19/JavaScript-this关键字/&text=JavaScript this关键字"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://upon.ink/2016/07/19/JavaScript-this关键字/&title=JavaScript this关键字"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://upon.ink/2016/07/19/JavaScript-this关键字/&is_video=false&description=JavaScript this关键字"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=JavaScript this关键字&body=Check out this article: http://upon.ink/2016/07/19/JavaScript-this关键字/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://upon.ink/2016/07/19/JavaScript-this关键字/&title=JavaScript this关键字"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://upon.ink/2016/07/19/JavaScript-this关键字/&title=JavaScript this关键字"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://upon.ink/2016/07/19/JavaScript-this关键字/&title=JavaScript this关键字"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://upon.ink/2016/07/19/JavaScript-this关键字/&title=JavaScript this关键字"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://upon.ink/2016/07/19/JavaScript-this关键字/&name=JavaScript this关键字&description=&lt;p&gt;&lt;code&gt;this&lt;/code&gt;是 Javascript 语言的一个关键字,它代表函数运行时，自动生成的一个内部对象，只能在函数内部使用。随着函数使用场合不同，&lt;code&gt;this&lt;/code&gt;的值会发生变化。但有一个总的原则，那就是&lt;code&gt;this&lt;/code&gt;指的是&lt;strong&gt;调用函数的那个对象&lt;/strong&gt;。&lt;/p&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#纯粹的函数调用："><span class="toc-number">1.</span> <span class="toc-text">纯粹的函数调用：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#作为对象方法调用："><span class="toc-number">2.</span> <span class="toc-text">作为对象方法调用：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#在构造函数中调用："><span class="toc-number">3.</span> <span class="toc-text">在构造函数中调用：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#在-apply-和-call-中调用："><span class="toc-number">4.</span> <span class="toc-text">在 apply 和 call 中调用：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#箭头函数中的-this："><span class="toc-number">5.</span> <span class="toc-text">箭头函数中的 this：</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope="" itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        JavaScript this关键字
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+        <span itemprop="name">upon.ink</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2016-07-19T11:09:38.000Z" itemprop="datePublished">2016-07-19</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/tech/">tech</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/JavaScript/">JavaScript</a>, <a class="tag-link" href="/tags/概念/">概念</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p><code>this</code>是 Javascript 语言的一个关键字,它代表函数运行时，自动生成的一个内部对象，只能在函数内部使用。随着函数使用场合不同，<code>this</code>的值会发生变化。但有一个总的原则，那就是<code>this</code>指的是<strong>调用函数的那个对象</strong>。</p>
+<a id="more"></a>
+<p>下面分五种情况，详细讨论<code>this</code>的用法。</p>
+<ol>
+<li><h3 id="纯粹的函数调用："><a href="#纯粹的函数调用：" class="headerlink" title="纯粹的函数调用："></a>纯粹的函数调用：</h3><p>这是函数最通常的用法，属于全局性调用，因此<code>this</code>就代表全局对象 Global（浏览器中的 window）。</p>
+<ul>
+<li>示例：<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.x);</span><br><span class="line">&#125;</span><br><span class="line">test();</span><br><span class="line"><span class="comment">// test 在全局作用域中，相当于 Global.test(), this.x 指向 Global.x。</span></span><br><span class="line"><span class="comment">// 这里输出结果为：0。</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><h3 id="作为对象方法调用："><a href="#作为对象方法调用：" class="headerlink" title="作为对象方法调用："></a>作为对象方法调用：</h3><p>函数还可以作为某个对象的方法调用，这时<code>this</code>就指这个上级对象,即调用该方法的对象。</p>
+<ul>
+<li>示例：<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.x);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> o = &#123;&#125;;</span><br><span class="line">o.x = <span class="number">1</span>;</span><br><span class="line">o.f = test;</span><br><span class="line">o.f();</span><br><span class="line"><span class="comment">// test 作为 o 的对象方法,由 o 对象来调用, this.x 指向 o.x。</span></span><br><span class="line"><span class="comment">// 这里输出结果为：1。</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><h3 id="在构造函数中调用："><a href="#在构造函数中调用：" class="headerlink" title="在构造函数中调用："></a>在构造函数中调用：</h3><p>构造函数，就是通过这个函数生成一个新对象 object。这时，this 就指这个新对象。</p>
+<ul>
+<li>示例：<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.x = <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> o = <span class="keyword">new</span> Foo();</span><br><span class="line"><span class="built_in">console</span>.log(o.x);</span><br><span class="line"><span class="comment">// this 在构造函数 Foo 中调用，指向由 Foo 创建的对象（o）。</span></span><br><span class="line"><span class="comment">// 这里输出结果为：1。</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><h3 id="在-apply-和-call-中调用："><a href="#在-apply-和-call-中调用：" class="headerlink" title="在 apply 和 call 中调用："></a>在 apply 和 call 中调用：</h3><p>Function.prototype.apply()是函数对象的一个方法，它的作用是改变函数的调用对象，它的第一个参数就表示改变后的调用这个函数的对象。</p>
+<ul>
+<li>示例：<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.x);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> o = &#123;&#125;;</span><br><span class="line">o.x = <span class="number">1</span>;</span><br><span class="line">o.m = test;</span><br><span class="line">o.m.apply(); <span class="comment">//这里输出结果为：0。</span></span><br><span class="line">o.m.apply(o); <span class="comment">//这里输出结果为：1。</span></span><br><span class="line"><span class="comment">// apply()的参数为空时，默认调用全局对象。因此，第一次的运行结果为0，证明this指的是全局对象。</span></span><br><span class="line"><span class="comment">// apply(o), this 指向 o, this.x 指向 o.x,所以输出结果为 1.</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><h3 id="箭头函数中的-this："><a href="#箭头函数中的-this：" class="headerlink" title="箭头函数中的 this："></a>箭头函数中的 this：</h3><p>箭头函数是 ES6 中的新特性，函数体内的<code>this</code>对象，就是定义时所在的对象，而不是使用时所在的对象。</p>
+<ul>
+<li>示例：<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//比如Mongoose 定义 Schema 的 statics/methods 的时候:</span></span><br><span class="line">XXXSchema.statics.list = <span class="function"><span class="params">cb</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">this</span>.find().exec(cb);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// 以上函数不能达到想要的效果，因为 this 并不是指向由 XXX Model 创建的 documents，而是指向定义时所在的对象。应该改为以下形式：</span></span><br><span class="line">XXXSchema.statics.list = <span class="function"><span class="keyword">function</span>(<span class="params">cb</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">this</span>.find().exec(cb);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ol>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/">Category</a></li>
+         
+          <li><a href="/tags/">Tag</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#纯粹的函数调用："><span class="toc-number">1.</span> <span class="toc-text">纯粹的函数调用：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#作为对象方法调用："><span class="toc-number">2.</span> <span class="toc-text">作为对象方法调用：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#在构造函数中调用："><span class="toc-number">3.</span> <span class="toc-text">在构造函数中调用：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#在-apply-和-call-中调用："><span class="toc-number">4.</span> <span class="toc-text">在 apply 和 call 中调用：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#箭头函数中的-this："><span class="toc-number">5.</span> <span class="toc-text">箭头函数中的 this：</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://upon.ink/2016/07/19/JavaScript-this关键字/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://upon.ink/2016/07/19/JavaScript-this关键字/&text=JavaScript this关键字"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://upon.ink/2016/07/19/JavaScript-this关键字/&title=JavaScript this关键字"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://upon.ink/2016/07/19/JavaScript-this关键字/&is_video=false&description=JavaScript this关键字"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=JavaScript this关键字&body=Check out this article: http://upon.ink/2016/07/19/JavaScript-this关键字/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://upon.ink/2016/07/19/JavaScript-this关键字/&title=JavaScript this关键字"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://upon.ink/2016/07/19/JavaScript-this关键字/&title=JavaScript this关键字"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://upon.ink/2016/07/19/JavaScript-this关键字/&title=JavaScript this关键字"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://upon.ink/2016/07/19/JavaScript-this关键字/&title=JavaScript this关键字"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://upon.ink/2016/07/19/JavaScript-this关键字/&name=JavaScript this关键字&description=&lt;p&gt;&lt;code&gt;this&lt;/code&gt;是 Javascript 语言的一个关键字,它代表函数运行时，自动生成的一个内部对象，只能在函数内部使用。随着函数使用场合不同，&lt;code&gt;this&lt;/code&gt;的值会发生变化。但有一个总的原则，那就是&lt;code&gt;this&lt;/code&gt;指的是&lt;strong&gt;调用函数的那个对象&lt;/strong&gt;。&lt;/p&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2019 upon
+    <a href="http://www.miitbeian.gov.cn" rel="nofollow">浙ICP备18057077号</a>
+    <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33011002013730">浙公网安备 33011002013730号</a>
+  </div>
+</footer>
+
+    </div>
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+

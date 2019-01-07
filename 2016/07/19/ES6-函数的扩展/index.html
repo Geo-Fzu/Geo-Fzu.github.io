@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang=en>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="箭头函数 函数参数的默认值 rest 参数 扩展运算符 name 属性 函数绑定 尾调用优化 函数参数的尾逗号">
+<meta name="keywords" content="ES6,JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ES6 函数的扩展">
+<meta property="og:url" content="http://upon.ink/2016/07/19/ES6-函数的扩展/index.html">
+<meta property="og:site_name" content="upon.ink">
+<meta property="og:description" content="箭头函数 函数参数的默认值 rest 参数 扩展运算符 name 属性 函数绑定 尾调用优化 函数参数的尾逗号">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-01-07T17:29:30.307Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ES6 函数的扩展">
+<meta name="twitter:description" content="箭头函数 函数参数的默认值 rest 参数 扩展运算符 name 属性 函数绑定 尾调用优化 函数参数的尾逗号">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.png">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.png">
+          
+        
+    
+    <!-- title -->
+    <title>ES6 函数的扩展</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/">Category</a></li>
+         
+          <li><a href="/tags/">Tag</a></li>
+        
+      </ul>
+    </span>
+    <br>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2016/07/19/JavaScript-this关键字/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2016/07/18/Hello-World/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://upon.ink/2016/07/19/ES6-函数的扩展/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://upon.ink/2016/07/19/ES6-函数的扩展/&text=ES6 函数的扩展"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://upon.ink/2016/07/19/ES6-函数的扩展/&title=ES6 函数的扩展"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://upon.ink/2016/07/19/ES6-函数的扩展/&is_video=false&description=ES6 函数的扩展"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=ES6 函数的扩展&body=Check out this article: http://upon.ink/2016/07/19/ES6-函数的扩展/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://upon.ink/2016/07/19/ES6-函数的扩展/&title=ES6 函数的扩展"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://upon.ink/2016/07/19/ES6-函数的扩展/&title=ES6 函数的扩展"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://upon.ink/2016/07/19/ES6-函数的扩展/&title=ES6 函数的扩展"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://upon.ink/2016/07/19/ES6-函数的扩展/&title=ES6 函数的扩展"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://upon.ink/2016/07/19/ES6-函数的扩展/&name=ES6 函数的扩展&description=&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#arrowFunc&quot;&gt;箭头函数&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#dfltVal&quot;&gt;函数参数的默认值&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#rest&quot;&gt;rest 参数&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#extnOpr&quot;&gt;扩展运算符&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#name&quot;&gt;name 属性&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#funcBind&quot;&gt;函数绑定&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;尾调用优化&lt;/li&gt;
+&lt;li&gt;函数参数的尾逗号"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#箭头函数"><span class="toc-number">1.</span> <span class="toc-text">箭头函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#基本用法"><span class="toc-number">1.1.</span> <span class="toc-text">基本用法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用注意点"><span class="toc-number">1.2.</span> <span class="toc-text">使用注意点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#函数参数的默认值"><span class="toc-number">2.</span> <span class="toc-text">函数参数的默认值</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#基本用法-1"><span class="toc-number">2.1.</span> <span class="toc-text">基本用法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#与解构赋值默认值结合使用"><span class="toc-number">2.2.</span> <span class="toc-text">与解构赋值默认值结合使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#作用域"><span class="toc-number">2.3.</span> <span class="toc-text">作用域</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#rest-参数"><span class="toc-number">3.</span> <span class="toc-text">rest 参数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#基本用法-2"><span class="toc-number">3.1.</span> <span class="toc-text">基本用法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展运算符"><span class="toc-number">4.</span> <span class="toc-text">扩展运算符</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#基本用法-3"><span class="toc-number">4.1.</span> <span class="toc-text">基本用法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#name-属性"><span class="toc-number">5.</span> <span class="toc-text">name 属性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#基本用法-4"><span class="toc-number">5.1.</span> <span class="toc-text">基本用法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#函数绑定"><span class="toc-number">6.</span> <span class="toc-text">函数绑定</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#基本用法-5"><span class="toc-number">6.1.</span> <span class="toc-text">基本用法</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope="" itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        ES6 函数的扩展
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+        <span itemprop="name">upon.ink</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2016-07-19T08:58:09.000Z" itemprop="datePublished">2016-07-19</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/tech/">tech</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/ES6/">ES6</a>, <a class="tag-link" href="/tags/JavaScript/">JavaScript</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <ul>
+<li><a href="#arrowFunc">箭头函数</a></li>
+<li><a href="#dfltVal">函数参数的默认值</a></li>
+<li><a href="#rest">rest 参数</a></li>
+<li><a href="#extnOpr">扩展运算符</a></li>
+<li><a href="#name">name 属性</a></li>
+<li><a href="#funcBind">函数绑定</a></li>
+<li>尾调用优化</li>
+<li>函数参数的尾逗号<a id="more"></a>
+</li>
+</ul>
+<ol>
+<li><h2 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a><a id="arrowFunc">箭头函数</a></h2><ul>
+<li><h3 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h3>ES6 允许使用“箭头”(=&gt;)定义函数。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> f = <span class="function"><span class="params">v</span> =&gt;</span> v;</span><br></pre></td></tr></table></figure>
+<p>上面的箭头函数等同于：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> f = <span class="function"><span class="keyword">function</span>(<span class="params">v</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> v;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>如果箭头函数不需要参数或需要多个参数，就使用一个圆括号代表参数部分。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> f = <span class="function"><span class="params">()</span> =&gt;</span> <span class="number">5</span>;</span><br><span class="line"><span class="comment">//等同于</span></span><br><span class="line"><span class="keyword">var</span> f = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">5</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> sum = <span class="function">(<span class="params">num1, num2</span>) =&gt;</span> num1 + num2;</span><br><span class="line"><span class="comment">//等同于</span></span><br><span class="line"><span class="keyword">var</span> sum = <span class="function"><span class="keyword">function</span>(<span class="params">num1, num2</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> num1 + num2;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>如果箭头函数的代码块部分多于一条语句，就要使用大括<code>{}</code>将它们括起来，并且使<code>return</code>语句返回。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> sum = <span class="function">(<span class="params">num1, num2</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> num1 + num2;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>由于大括号被解释为代码块，所以如果箭头函数直接返回一个对象，必须在外面加上括号。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> getTempObj = <span class="function"><span class="params">id</span> =&gt;</span> (&#123;</span><br><span class="line">  id: id,</span><br><span class="line">  name: <span class="string">"temp"</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<ul>
+<li><h3 id="使用注意点"><a href="#使用注意点" class="headerlink" title="使用注意点"></a>使用注意点</h3><strong>箭头函数有几个使用注意点。</strong></li>
+</ul>
+<ol>
+<li>函数体内的<code>this</code>对象，就是定义时所在的对象，而不是使用时所在的对象。</li>
+<li>不可以当做构造函数，也就是说，不可以使用<code>new</code>命令，否则会抛出一个错误。</li>
+<li>不可以使用<code>arguments</code>对象，该对象在函数体内不存在。如果要用，可以使用 Rest 参数代替。</li>
+<li>不可以使用<code>yield</code>命令，因此箭头函数不能用作 Generator 函数。</li>
+</ol>
+</li>
+<li><h2 id="函数参数的默认值"><a href="#函数参数的默认值" class="headerlink" title="函数参数的默认值"></a><a id="dfltVal">函数参数的默认值</a></h2><ul>
+<li><h3 id="基本用法-1"><a href="#基本用法-1" class="headerlink" title="基本用法"></a>基本用法</h3>ES6 允许为函数的参数设置默认值，即直接写在参数定义的后面。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">log</span>(<span class="params">x, y = <span class="string">"World"</span></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(x, y);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">log(<span class="string">"Hello"</span>); <span class="comment">// Hello World</span></span><br><span class="line">log(<span class="string">"Hello"</span>, <span class="string">"Chiaki"</span>); <span class="comment">// Hello Chiaki</span></span><br><span class="line">log(<span class="string">"Hello"</span>, <span class="string">""</span>); <span class="comment">// Hello</span></span><br></pre></td></tr></table></figure>
+<p>另一个例子：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Point</span>(<span class="params">x = <span class="number">0</span>, y = <span class="number">0</span></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.x = x;</span><br><span class="line">  <span class="keyword">this</span>.y = y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> p = <span class="keyword">new</span> Point();</span><br><span class="line"><span class="built_in">console</span>.log(p); <span class="comment">// Point &#123; x: 0, y: 0 &#125;</span></span><br></pre></td></tr></table></figure>
+<p>ES6 函数参数默认值写法有以下好处：<br>_ 简洁<br>_ 易于阅读，可以轻易意识到哪些参数是可以省略的 * 有利于将来代码优化，即使在对外接口中拿掉这个参数也照常运行</p>
+<ul>
+<li><h3 id="与解构赋值默认值结合使用"><a href="#与解构赋值默认值结合使用" class="headerlink" title="与解构赋值默认值结合使用"></a>与解构赋值默认值结合使用</h3>参数默认值可以与解构赋值的默认值，结合起来使用。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">&#123; x, y = <span class="number">5</span> &#125;</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(x, y);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">foo(&#123;&#125;); <span class="comment">// undefined 5</span></span><br><span class="line">foo(&#123; <span class="attr">x</span>: <span class="number">1</span> &#125;); <span class="comment">// 1 5</span></span><br><span class="line">foo(&#123; <span class="attr">x</span>: <span class="number">1</span>, <span class="attr">y</span>: <span class="number">2</span> &#125;); <span class="comment">// 1 2</span></span><br><span class="line">foo(); <span class="comment">// error</span></span><br></pre></td></tr></table></figure>
+<p>上面的代码使用了对象的解构赋值默认值，而没有使用函数参数的默认值。只有当函数<code>foo</code>的参数是一个对象时，变量<code>x</code>和<code>y</code>才会通过解构赋值产生。如果函数<code>foo</code>调用时参数不是对象，变量<code>x</code>和<code>y</code>就不会产生。<br>下面是另一个对象的解构赋值默认值的例子。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fetch</span>(<span class="params">url, &#123; body = <span class="string">""</span>, method = <span class="string">"GET"</span>, headers = &#123;&#125; &#125;</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(method);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">fetch(<span class="string">"http://example.com"</span>, &#123;&#125;);</span><br><span class="line"><span class="comment">// "GET"</span></span><br><span class="line"></span><br><span class="line">fetch(<span class="string">"http://example.com"</span>);</span><br><span class="line"><span class="comment">// 报错</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><h3 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h3>如果参数默认值是一个变量，则该变量所处的作用域，与其他变量的作用域规则是一样的，即先是当前函数的作用域，然后才是全局作用域。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params">x, y = x</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(y);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">f(<span class="number">2</span>); <span class="comment">// 2</span></span><br></pre></td></tr></table></figure>
+<p>上面代码中，参数 y 的默认值等于 x。调用时，由于函数作用域内部的变量 x 已经生成，所以 y 等于参数 x，而不是全局变量 x。</p>
+</li>
+<li><h2 id="rest-参数"><a href="#rest-参数" class="headerlink" title="rest 参数"></a><a id="rest">rest 参数</a></h2><ul>
+<li><h3 id="基本用法-2"><a href="#基本用法-2" class="headerlink" title="基本用法"></a>基本用法</h3>ES6 引入 rest 参数（形式为“…变量名”），用于获取函数的多余参数，这样就不需要使用 arguments 对象了。rest 参数搭配的变量是一个数组，该变量将多余的参数放入数组中。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">...values</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> sum = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> val <span class="keyword">of</span> values) &#123;</span><br><span class="line">    sum += val;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">add(<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>); <span class="comment">// 9</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 该 add 函数是一个求和函数，利用 rest 参数，可以向该函数传入任意数目的参数。</span></span><br></pre></td></tr></table></figure>
+<p>下面是一个 rest 参数代替 arguments 变量的例子：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// arguments 变量的写法</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sortNumbers</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Array</span>.prototype.slice.call(<span class="built_in">arguments</span>).sort();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// rest 参数的写法</span></span><br><span class="line"><span class="keyword">const</span> sortNumbers = <span class="function">(<span class="params">...numbers</span>) =&gt;</span> numbers.sort();</span><br></pre></td></tr></table></figure>
+<p><strong>注意， rest 参数之后不能再有其它参数（即只能是最后一个参数），否则会报错。</strong></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> (<span class="params">a, ...b, c</span>)</span></span><br><span class="line"><span class="function">    // ...</span></span><br><span class="line"><span class="function">&#125;</span></span><br><span class="line"><span class="function">// <span class="title">error</span></span></span><br></pre></td></tr></table></figure>
+</li>
+<li><h2 id="扩展运算符"><a href="#扩展运算符" class="headerlink" title="扩展运算符"></a><a id="extnOpr">扩展运算符</a></h2><ul>
+<li><h3 id="基本用法-3"><a href="#基本用法-3" class="headerlink" title="基本用法"></a>基本用法</h3>扩展运算符（spread）是三个点（…）。它好比 rest 参数的逆运算，将一个数组转为用逗号分隔的参数序列。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(...[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])</span><br><span class="line"><span class="comment">// 1 2 3</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">1</span>, ...[<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>], <span class="number">5</span>)</span><br><span class="line"><span class="comment">// 1 2 3 4 5</span></span><br><span class="line"></span><br><span class="line">[...document.querySelectorAll(<span class="string">'div'</span>)]</span><br><span class="line"><span class="comment">// [&lt;div&gt;, &lt;div&gt;, &lt;div&gt;]</span></span><br></pre></td></tr></table></figure>
+<p>该运算符主要用于函数调用：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 第一个示例：</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">push</span>(<span class="params">array, ...items</span>) </span>&#123;</span><br><span class="line">  array.push(...items);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 第二个示例：</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">x, y</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> x + y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> numbers = [<span class="number">4</span>, <span class="number">38</span>];</span><br><span class="line">add(...numbers); <span class="comment">// 42</span></span><br></pre></td></tr></table></figure>
+<p><strong>分析：</strong>上面代码中，函数定义时的参数 如上面 push(array, …items) 中的 <code>...items</code> 是 rest 参数，见上一小节，用于获取函数的多余参数。函数调用时，如代码中的 array.push(…items)， <code>...items</code> 是扩展运算符的应用，将数组转为参数序列。</p>
+</li>
+<li><h2 id="name-属性"><a href="#name-属性" class="headerlink" title="name 属性"></a><a id="name">name 属性</a></h2><ul>
+<li><h3 id="基本用法-4"><a href="#基本用法-4" class="headerlink" title="基本用法"></a>基本用法</h3>函数的 name 属性，返回该函数的函数名。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"><span class="built_in">console</span>.log(foo.name);</span><br><span class="line"><span class="comment">// "foo"</span></span><br></pre></td></tr></table></figure>
+<p>这个属性早就被浏览器广泛支持，但是直到 ES6， 才将其写入了标准。</p>
+<p>需要注意的是， ES6 对这个属性的行为做出了一些修改。如果将一个匿名函数赋值给一个变量， ES5 的 name 属性，会返回空字符串，而 ES6 的 name 属性会返回实际的函数名：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> func1 = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ES5</span></span><br><span class="line">func1.name; <span class="comment">// ""</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// ES6</span></span><br><span class="line">func1.name; <span class="comment">// "func1"</span></span><br></pre></td></tr></table></figure>
+<p>如果将一个具名函数赋值给一个变量，则 ES5 和 ES6 的 name 属性都返回这个具名函数原本的名字：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> bar = <span class="function"><span class="keyword">function</span> <span class="title">baz</span>(<span class="params"></span>) </span>&#123;&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ES5</span></span><br><span class="line">bar.name; <span class="comment">// "baz"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// ES6</span></span><br><span class="line">bar.name; <span class="comment">// "baz"</span></span><br></pre></td></tr></table></figure>
+<p>Function 构造函数返回的函数实例，name 属性的值为“anonymous”：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="built_in">Function</span>().name; <span class="comment">// "anonymous"</span></span><br></pre></td></tr></table></figure>
+<p>bind 返回的函数，name 属性值会加上“bound ”前缀：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line">foo</span><br><span class="line">  .bind(&#123;&#125;)</span><br><span class="line">  .name(</span><br><span class="line">    <span class="comment">// "bound foo"</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line">  )</span><br><span class="line">  .bind(&#123;&#125;).name; <span class="comment">// "bound "</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><h2 id="函数绑定"><a href="#函数绑定" class="headerlink" title="函数绑定"></a><a id="funcBind">函数绑定</a></h2><ul>
+<li><h3 id="基本用法-5"><a href="#基本用法-5" class="headerlink" title="基本用法"></a>基本用法</h3>箭头函数可以绑定 this 对象，大大减少了显式绑定 this 对象的写法（call、apply、bind）。但是，箭头函数并不适用于所有场合，所以 ES7 提出了“函数绑定”（function bind）运算符，用来取代 call、apply、bind 调用。虽然该语法还是 ES7 的一个提案，但是 Babel 转码器已经支持。</li>
+</ul>
+<p>函数绑定运算符是并排的两个双冒号（::），双冒号左边是一个对象，右边是一个函数。该运算符会自动将左边的对象，作为上下文环境（即 this 对象），绑定到右边的函数上面：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">foo::bar;</span><br><span class="line"><span class="comment">// 等同于</span></span><br><span class="line">bar.bind(foo);</span><br><span class="line"></span><br><span class="line">foo::bar(...arguments);</span><br><span class="line"><span class="comment">// 等同于</span></span><br><span class="line">bar.apply(foo, <span class="built_in">arguments</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> hasOwnProperty = <span class="built_in">Object</span>.prototype.hasOwnProperty;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">hasOwn</span>(<span class="params">obj, key</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> obj::hasOwnProperty(key);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果双冒号左边为空，右边是一个对象的方法，则等于将该方法绑定在该对象上面：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> method = obj::obj.foo;</span><br><span class="line"><span class="comment">// 等同于</span></span><br><span class="line"><span class="keyword">var</span> method = ::obj.foo;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> log = ::<span class="built_in">console</span>.log;</span><br><span class="line"><span class="comment">// 等同于</span></span><br><span class="line"><span class="keyword">var</span> log = <span class="built_in">console</span>.log.bind(<span class="built_in">console</span>);</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<blockquote>
+<p><a href="http://es6.ruanyifeng.com/#docs/function" title="ECMAScript 6 入门" target="_blank" rel="noopener">参考链接</a></p>
+</blockquote>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/">Category</a></li>
+         
+          <li><a href="/tags/">Tag</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#箭头函数"><span class="toc-number">1.</span> <span class="toc-text">箭头函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#基本用法"><span class="toc-number">1.1.</span> <span class="toc-text">基本用法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用注意点"><span class="toc-number">1.2.</span> <span class="toc-text">使用注意点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#函数参数的默认值"><span class="toc-number">2.</span> <span class="toc-text">函数参数的默认值</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#基本用法-1"><span class="toc-number">2.1.</span> <span class="toc-text">基本用法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#与解构赋值默认值结合使用"><span class="toc-number">2.2.</span> <span class="toc-text">与解构赋值默认值结合使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#作用域"><span class="toc-number">2.3.</span> <span class="toc-text">作用域</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#rest-参数"><span class="toc-number">3.</span> <span class="toc-text">rest 参数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#基本用法-2"><span class="toc-number">3.1.</span> <span class="toc-text">基本用法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展运算符"><span class="toc-number">4.</span> <span class="toc-text">扩展运算符</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#基本用法-3"><span class="toc-number">4.1.</span> <span class="toc-text">基本用法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#name-属性"><span class="toc-number">5.</span> <span class="toc-text">name 属性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#基本用法-4"><span class="toc-number">5.1.</span> <span class="toc-text">基本用法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#函数绑定"><span class="toc-number">6.</span> <span class="toc-text">函数绑定</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#基本用法-5"><span class="toc-number">6.1.</span> <span class="toc-text">基本用法</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://upon.ink/2016/07/19/ES6-函数的扩展/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://upon.ink/2016/07/19/ES6-函数的扩展/&text=ES6 函数的扩展"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://upon.ink/2016/07/19/ES6-函数的扩展/&title=ES6 函数的扩展"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://upon.ink/2016/07/19/ES6-函数的扩展/&is_video=false&description=ES6 函数的扩展"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=ES6 函数的扩展&body=Check out this article: http://upon.ink/2016/07/19/ES6-函数的扩展/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://upon.ink/2016/07/19/ES6-函数的扩展/&title=ES6 函数的扩展"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://upon.ink/2016/07/19/ES6-函数的扩展/&title=ES6 函数的扩展"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://upon.ink/2016/07/19/ES6-函数的扩展/&title=ES6 函数的扩展"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://upon.ink/2016/07/19/ES6-函数的扩展/&title=ES6 函数的扩展"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://upon.ink/2016/07/19/ES6-函数的扩展/&name=ES6 函数的扩展&description=&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#arrowFunc&quot;&gt;箭头函数&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#dfltVal&quot;&gt;函数参数的默认值&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#rest&quot;&gt;rest 参数&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#extnOpr&quot;&gt;扩展运算符&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#name&quot;&gt;name 属性&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#funcBind&quot;&gt;函数绑定&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;尾调用优化&lt;/li&gt;
+&lt;li&gt;函数参数的尾逗号"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2019 upon
+    <a href="http://www.miitbeian.gov.cn" rel="nofollow">浙ICP备18057077号</a>
+    <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33011002013730">浙公网安备 33011002013730号</a>
+  </div>
+</footer>
+
+    </div>
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+

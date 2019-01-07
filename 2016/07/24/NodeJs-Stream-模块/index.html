@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang=en>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="一 、什么是流？ A stream is an abstract interface for working with streaming data in Node.js. The stream module provides a base API that makes it easy to build objects that implement the stream interface.The">
+<meta name="keywords" content="概念,NodeJs,Stream">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NodeJs Stream 模块">
+<meta property="og:url" content="http://upon.ink/2016/07/24/NodeJs-Stream-模块/index.html">
+<meta property="og:site_name" content="upon.ink">
+<meta property="og:description" content="一 、什么是流？ A stream is an abstract interface for working with streaming data in Node.js. The stream module provides a base API that makes it easy to build objects that implement the stream interface.The">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-01-07T17:29:30.307Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="NodeJs Stream 模块">
+<meta name="twitter:description" content="一 、什么是流？ A stream is an abstract interface for working with streaming data in Node.js. The stream module provides a base API that makes it easy to build objects that implement the stream interface.The">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.png">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.png">
+          
+        
+    
+    <!-- title -->
+    <title>NodeJs Stream 模块</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/">Category</a></li>
+         
+          <li><a href="/tags/">Tag</a></li>
+        
+      </ul>
+    </span>
+    <br>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2016/07/24/Html5-article-与-section-标签/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2016/07/23/Jade-在-Express-中的使用/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://upon.ink/2016/07/24/NodeJs-Stream-模块/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://upon.ink/2016/07/24/NodeJs-Stream-模块/&text=NodeJs Stream 模块"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://upon.ink/2016/07/24/NodeJs-Stream-模块/&title=NodeJs Stream 模块"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://upon.ink/2016/07/24/NodeJs-Stream-模块/&is_video=false&description=NodeJs Stream 模块"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=NodeJs Stream 模块&body=Check out this article: http://upon.ink/2016/07/24/NodeJs-Stream-模块/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://upon.ink/2016/07/24/NodeJs-Stream-模块/&title=NodeJs Stream 模块"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://upon.ink/2016/07/24/NodeJs-Stream-模块/&title=NodeJs Stream 模块"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://upon.ink/2016/07/24/NodeJs-Stream-模块/&title=NodeJs Stream 模块"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://upon.ink/2016/07/24/NodeJs-Stream-模块/&title=NodeJs Stream 模块"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://upon.ink/2016/07/24/NodeJs-Stream-模块/&name=NodeJs Stream 模块&description=&lt;h1 id=&quot;一-、什么是流？&quot;&gt;&lt;a href=&quot;#一-、什么是流？&quot; class=&quot;headerlink&quot; title=&quot;一 、什么是流？&quot;&gt;&lt;/a&gt;一 、什么是流？&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;A stream is an abstract interface for working with streaming data in Node.js. The stream module provides a base API that makes it easy to build objects that implement the stream interface.&lt;br&gt;There are many stream objects provided by Node.js. For instance, a request to an HTTP server and process.stdout are both stream instances.&lt;br&gt;Streams can be readable, writable, or both. All streams are instances of EventEmitter.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;在 Node.js 中，流是一个用来处理流式数据的抽象接口。&lt;code&gt;stream&lt;/code&gt; 模块提供基础的 API 来帮助更简单得创建对象。HTTP 服务器的一个 request 请求、process.stdout 等都是流的实例。&lt;br&gt;流可以分为可读、可写或者两者兼得。所有的流都是 EventEmitter 的实例。（&lt;strong&gt;注： 所以，流可以通过事件的注册和监听来对数据进行处理。&lt;/strong&gt;）&lt;/p&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一-、什么是流？"><span class="toc-number">1.</span> <span class="toc-text">一 、什么是流？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#二、流的分类"><span class="toc-number">2.</span> <span class="toc-text">二、流的分类</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Readable-Streams"><span class="toc-number">2.1.</span> <span class="toc-text">1. Readable Streams</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Writable-Streams"><span class="toc-number">2.2.</span> <span class="toc-text">2. Writable Streams</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope="" itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        NodeJs Stream 模块
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+        <span itemprop="name">upon.ink</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2016-07-24T10:16:29.000Z" itemprop="datePublished">2016-07-24</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/tech/">tech</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/NodeJs/">NodeJs</a>, <a class="tag-link" href="/tags/Stream/">Stream</a>, <a class="tag-link" href="/tags/概念/">概念</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h1 id="一-、什么是流？"><a href="#一-、什么是流？" class="headerlink" title="一 、什么是流？"></a>一 、什么是流？</h1><blockquote>
+<p>A stream is an abstract interface for working with streaming data in Node.js. The stream module provides a base API that makes it easy to build objects that implement the stream interface.<br>There are many stream objects provided by Node.js. For instance, a request to an HTTP server and process.stdout are both stream instances.<br>Streams can be readable, writable, or both. All streams are instances of EventEmitter.</p>
+</blockquote>
+<p>在 Node.js 中，流是一个用来处理流式数据的抽象接口。<code>stream</code> 模块提供基础的 API 来帮助更简单得创建对象。HTTP 服务器的一个 request 请求、process.stdout 等都是流的实例。<br>流可以分为可读、可写或者两者兼得。所有的流都是 EventEmitter 的实例。（<strong>注： 所以，流可以通过事件的注册和监听来对数据进行处理。</strong>）</p>
+<a id="more"></a>
+<h1 id="二、流的分类"><a href="#二、流的分类" class="headerlink" title="二、流的分类"></a>二、流的分类</h1><p>Node.js 中有四种基本的流的类型：</p>
+<ul>
+<li>Readable - 可以从中读取数据的流（例如：fs.createReadStream()）</li>
+<li>Writable - 可以向其中写入数据的流（例如：fs.createWriteStream()）</li>
+<li>Duplex - 既可读又可写的流（例如：net.Socket）</li>
+<li>Transform - 当被读写是可以修改和转换其中数据的 Duplex 流（例如：zlib.createDeflate()）</li>
+</ul>
+<h2 id="1-Readable-Streams"><a href="#1-Readable-Streams" class="headerlink" title="1. Readable Streams"></a>1. Readable Streams</h2><blockquote>
+<p>Readable streams are an abstraction for a source from which data is consumed.<br>All Readable streams implent the interface defined by the <code>stream.Readable</code> class.</p>
+</blockquote>
+<p>可读流通过 <code>push</code> 方法产生数据，存入 readable 的缓存中。当调用 push(null) 时，便结束流的数据产生。正常情况下，需要为流实例提供一个 <code>_read</code> 方法，在这个方法中使用 <code>push</code> 产生的数据。<br>在需要数据时，流的内部会自动调用 <code>_read</code> 方法来向缓存中添加数据。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> stream = <span class="built_in">require</span>(<span class="string">"stream"</span>);</span><br><span class="line"><span class="keyword">var</span> readable = Stream.Readable();</span><br><span class="line"><span class="keyword">var</span> source = [<span class="string">"a"</span>, <span class="string">"b"</span>, <span class="string">"c"</span>];</span><br><span class="line"></span><br><span class="line">readable._read = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> data = source.shift() || <span class="literal">null</span>;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"push"</span>, data);</span><br><span class="line">  <span class="keyword">this</span>.push(data);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>data 事件<br><code>data</code> 事件在流把一个数据块的的所有权转让给消耗者时触发。在 <code>flowing</code> 模式下，可以通过 <code>readable.pipe()</code>, <code>readable.resume()</code> 或者 通过给 <code>data</code> 事件添加监听回调函数触发。<br>如果之前未调用 pause 方法进入 paused 模式，则监听 <code>data</code> 事件也会调用 <code>resume</code> 方法，从而使流进入 <code>flowing</code> 模式。<strong>在 <code>flowing</code> 模式下，readable 的数据会持续不断的生产出来。</strong></p>
+<blockquote>
+<p>The listener callback will be passed the chunk of data as a string if a default encoding has been specified for the stream using the readable.setEncoding() method; otherwise the data will be passed as a Buffer.</p>
+</blockquote>
+<p>如果 readable 有使用 <code>setEncoding()</code> 方法，回调函数会返回一个字符串，否则返回一个 <code>Buffer</code>。</p>
+</li>
+<li><p>end 事件<br><code>end</code> 事件在流中没有可以消耗的数据时被触发。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// readable 定义见上面代码</span></span><br><span class="line">readable.on(<span class="string">"end"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"end"</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">readable.on(<span class="string">"data"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"data"</span>, data);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 输出：</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    push a</span></span><br><span class="line"><span class="comment">    push b</span></span><br><span class="line"><span class="comment">    data:  &lt;Buffer 61&gt;</span></span><br><span class="line"><span class="comment">    push c</span></span><br><span class="line"><span class="comment">    data:  &lt;Buffer 62&gt;</span></span><br><span class="line"><span class="comment">    push null</span></span><br><span class="line"><span class="comment">    data:  &lt;Buffer 63&gt;</span></span><br><span class="line"><span class="comment">    end</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>readable.pipe(destination[,options]) 方法</p>
+<blockquote>
+<p>The <code>readable.pipe()</code> method attaches a Writable stream to the readable, causing it to switch automatically into <code>flowing</code> mode and push all of its data to the attached Writable. The flow of data will be automatically managed so that the destination Writable stream is not overwhelmed by a faster Readable stream.</p>
+</blockquote>
+<p>readable 使用 pipe() 后，将会自动转化为 <code>flowing</code> 模式。<strong>read.pipe() 方法返回一个对 destination 流的引用</strong>，这样我们就可以进行链式调用了。下面是一个 <code>gulp</code> 中链式调用的例子：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">gulp</span><br><span class="line">  .src(<span class="string">"client/templates/*.jade"</span>)</span><br><span class="line">  .pipe(jade())</span><br><span class="line">  .pipe(minify())</span><br><span class="line">  .pipe(gulp.dest(<span class="string">"build/minified_templates"</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 中间环节的流，必须是既可写又可读的，即Duplex或Transform。</span></span><br></pre></td></tr></table></figure>
+<p>默认情况下，destination 可读流将会在在可写流触发 <code>end</code> 事件是调用 stream.end() 方法，这样 destination 就不再可写了。pipe() 方法自动处理了 ‘data’, ‘end’, ‘write’ 等事件和方法，使得关联变得更简单。</p>
+</li>
+</ul>
+<h2 id="2-Writable-Streams"><a href="#2-Writable-Streams" class="headerlink" title="2. Writable Streams"></a>2. Writable Streams</h2><ul>
+<li><code>_write(data, _, next)</code> 中调用 next(err) 来声明“写入”操作已完成， 可以开始写入下一个数据</li>
+<li>next 的调用时机可以是异步的</li>
+<li>调用 write(data) 方法来往 writable 中写入数据。将触发 _write 的调用，将数据写入底层</li>
+<li>必须调用 end()方法来告诉 writable，所有数据均已写入</li>
+</ul>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/">Category</a></li>
+         
+          <li><a href="/tags/">Tag</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一-、什么是流？"><span class="toc-number">1.</span> <span class="toc-text">一 、什么是流？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#二、流的分类"><span class="toc-number">2.</span> <span class="toc-text">二、流的分类</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Readable-Streams"><span class="toc-number">2.1.</span> <span class="toc-text">1. Readable Streams</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Writable-Streams"><span class="toc-number">2.2.</span> <span class="toc-text">2. Writable Streams</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://upon.ink/2016/07/24/NodeJs-Stream-模块/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://upon.ink/2016/07/24/NodeJs-Stream-模块/&text=NodeJs Stream 模块"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://upon.ink/2016/07/24/NodeJs-Stream-模块/&title=NodeJs Stream 模块"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://upon.ink/2016/07/24/NodeJs-Stream-模块/&is_video=false&description=NodeJs Stream 模块"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=NodeJs Stream 模块&body=Check out this article: http://upon.ink/2016/07/24/NodeJs-Stream-模块/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://upon.ink/2016/07/24/NodeJs-Stream-模块/&title=NodeJs Stream 模块"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://upon.ink/2016/07/24/NodeJs-Stream-模块/&title=NodeJs Stream 模块"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://upon.ink/2016/07/24/NodeJs-Stream-模块/&title=NodeJs Stream 模块"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://upon.ink/2016/07/24/NodeJs-Stream-模块/&title=NodeJs Stream 模块"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://upon.ink/2016/07/24/NodeJs-Stream-模块/&name=NodeJs Stream 模块&description=&lt;h1 id=&quot;一-、什么是流？&quot;&gt;&lt;a href=&quot;#一-、什么是流？&quot; class=&quot;headerlink&quot; title=&quot;一 、什么是流？&quot;&gt;&lt;/a&gt;一 、什么是流？&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;A stream is an abstract interface for working with streaming data in Node.js. The stream module provides a base API that makes it easy to build objects that implement the stream interface.&lt;br&gt;There are many stream objects provided by Node.js. For instance, a request to an HTTP server and process.stdout are both stream instances.&lt;br&gt;Streams can be readable, writable, or both. All streams are instances of EventEmitter.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;在 Node.js 中，流是一个用来处理流式数据的抽象接口。&lt;code&gt;stream&lt;/code&gt; 模块提供基础的 API 来帮助更简单得创建对象。HTTP 服务器的一个 request 请求、process.stdout 等都是流的实例。&lt;br&gt;流可以分为可读、可写或者两者兼得。所有的流都是 EventEmitter 的实例。（&lt;strong&gt;注： 所以，流可以通过事件的注册和监听来对数据进行处理。&lt;/strong&gt;）&lt;/p&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2019 upon
+    <a href="http://www.miitbeian.gov.cn" rel="nofollow">浙ICP备18057077号</a>
+    <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33011002013730">浙公网安备 33011002013730号</a>
+  </div>
+</footer>
+
+    </div>
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+

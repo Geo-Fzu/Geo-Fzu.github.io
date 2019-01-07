@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang=en>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="一、 基本概念Generator 函数是 ES6 提供的一种异步编程解决方案，语法行为与传统函数完全不同。它的作用是在执行一个函数的时候，可以在某个点暂停执行，做一些其它工作，然后再返回这个函数继续执行，甚至带一些新的值。执行 Generator 函数会返回一个迭代器对象 （Iterator），说明它是一个迭代器对象生成函数。返回的迭代器可以依次遍历 Generator 函数内部的每一个状态。形式">
+<meta name="keywords" content="ES6,JavaScript,异步">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ES6 Generator">
+<meta property="og:url" content="http://upon.ink/2016/08/05/ES6-Generator/index.html">
+<meta property="og:site_name" content="upon.ink">
+<meta property="og:description" content="一、 基本概念Generator 函数是 ES6 提供的一种异步编程解决方案，语法行为与传统函数完全不同。它的作用是在执行一个函数的时候，可以在某个点暂停执行，做一些其它工作，然后再返回这个函数继续执行，甚至带一些新的值。执行 Generator 函数会返回一个迭代器对象 （Iterator），说明它是一个迭代器对象生成函数。返回的迭代器可以依次遍历 Generator 函数内部的每一个状态。形式">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-01-07T17:29:30.307Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ES6 Generator">
+<meta name="twitter:description" content="一、 基本概念Generator 函数是 ES6 提供的一种异步编程解决方案，语法行为与传统函数完全不同。它的作用是在执行一个函数的时候，可以在某个点暂停执行，做一些其它工作，然后再返回这个函数继续执行，甚至带一些新的值。执行 Generator 函数会返回一个迭代器对象 （Iterator），说明它是一个迭代器对象生成函数。返回的迭代器可以依次遍历 Generator 函数内部的每一个状态。形式">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.png">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.png">
+          
+        
+    
+    <!-- title -->
+    <title>ES6 Generator</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/">Category</a></li>
+         
+          <li><a href="/tags/">Tag</a></li>
+        
+      </ul>
+    </span>
+    <br>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2016/08/21/HTTP-请求头详解/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2016/08/04/ES6-Iterator/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://upon.ink/2016/08/05/ES6-Generator/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://upon.ink/2016/08/05/ES6-Generator/&text=ES6 Generator"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://upon.ink/2016/08/05/ES6-Generator/&title=ES6 Generator"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://upon.ink/2016/08/05/ES6-Generator/&is_video=false&description=ES6 Generator"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=ES6 Generator&body=Check out this article: http://upon.ink/2016/08/05/ES6-Generator/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://upon.ink/2016/08/05/ES6-Generator/&title=ES6 Generator"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://upon.ink/2016/08/05/ES6-Generator/&title=ES6 Generator"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://upon.ink/2016/08/05/ES6-Generator/&title=ES6 Generator"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://upon.ink/2016/08/05/ES6-Generator/&title=ES6 Generator"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://upon.ink/2016/08/05/ES6-Generator/&name=ES6 Generator&description=&lt;h1 id=&quot;一、-基本概念&quot;&gt;&lt;a href=&quot;#一、-基本概念&quot; class=&quot;headerlink&quot; title=&quot;一、 基本概念&quot;&gt;&lt;/a&gt;一、 基本概念&lt;/h1&gt;&lt;p&gt;&lt;code&gt;Generator&lt;/code&gt; 函数是 ES6 提供的一种异步编程解决方案，语法行为与传统函数完全不同。它的作用是在执行一个函数的时候，可以在某个点暂停执行，做一些其它工作，然后再返回这个函数继续执行，甚至带一些新的值。&lt;br&gt;执行 Generator 函数会返回一个迭代器对象 （Iterator），说明它是一个迭代器对象生成函数。返回的迭代器可以依次遍历 Generator 函数内部的每一个状态。&lt;br&gt;形式上，Generator 函数是一个普通函数，但是有两个特征：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;function&lt;/code&gt; 关键字与函数名之间有一个 &lt;code&gt;*&lt;/code&gt; 号；&lt;/li&gt;
+&lt;li&gt;函数内部使用 &lt;code&gt;yield&lt;/code&gt; 语句。yield 是一个关键字，和 return 类似，不同点在于 yield 语句可在一个函数中出现多次。&lt;em&gt;yield 表达式暂停了 Generator 函数的执行，然后可以从暂停的地方恢复执行&lt;/em&gt;。&lt;ul&gt;
+&lt;li&gt;yield 后面的表达式作为迭代器 next 函数的返回值；&lt;/li&gt;
+&lt;li&gt;迭代器 next 函数的参数作为上一次 yield 的返回值。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Generator 函数的调用方法与普通函数一样，也是在函数名后面加上一对圆括号。&lt;em&gt;不同的是，调用 Generator 后，该函数并不执行，返回的也不是函数运行结果，而是一个迭代器对象。&lt;/em&gt;&lt;/p&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一、-基本概念"><span class="toc-number">1.</span> <span class="toc-text">一、 基本概念</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#二、-与-Iterator-的关系"><span class="toc-number">2.</span> <span class="toc-text">二、 与 Iterator 的关系</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#三、-Generator-prototype-return-方法"><span class="toc-number">3.</span> <span class="toc-text">三、 Generator.prototype.return() 方法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#四、-yield-语句"><span class="toc-number">4.</span> <span class="toc-text">四、 yield* 语句</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#五、-异步操作的同步化表达"><span class="toc-number">5.</span> <span class="toc-text">五、 异步操作的同步化表达</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope="" itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        ES6 Generator
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+        <span itemprop="name">upon.ink</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2016-08-05T14:39:43.000Z" itemprop="datePublished">2016-08-05</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/tech/">tech</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/ES6/">ES6</a>, <a class="tag-link" href="/tags/JavaScript/">JavaScript</a>, <a class="tag-link" href="/tags/异步/">异步</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h1 id="一、-基本概念"><a href="#一、-基本概念" class="headerlink" title="一、 基本概念"></a>一、 基本概念</h1><p><code>Generator</code> 函数是 ES6 提供的一种异步编程解决方案，语法行为与传统函数完全不同。它的作用是在执行一个函数的时候，可以在某个点暂停执行，做一些其它工作，然后再返回这个函数继续执行，甚至带一些新的值。<br>执行 Generator 函数会返回一个迭代器对象 （Iterator），说明它是一个迭代器对象生成函数。返回的迭代器可以依次遍历 Generator 函数内部的每一个状态。<br>形式上，Generator 函数是一个普通函数，但是有两个特征：</p>
+<ol>
+<li><code>function</code> 关键字与函数名之间有一个 <code>*</code> 号；</li>
+<li>函数内部使用 <code>yield</code> 语句。yield 是一个关键字，和 return 类似，不同点在于 yield 语句可在一个函数中出现多次。<em>yield 表达式暂停了 Generator 函数的执行，然后可以从暂停的地方恢复执行</em>。<ul>
+<li>yield 后面的表达式作为迭代器 next 函数的返回值；</li>
+<li>迭代器 next 函数的参数作为上一次 yield 的返回值。</li>
+</ul>
+</li>
+</ol>
+<p>Generator 函数的调用方法与普通函数一样，也是在函数名后面加上一对圆括号。<em>不同的是，调用 Generator 后，该函数并不执行，返回的也不是函数运行结果，而是一个迭代器对象。</em></p>
+<a id="more"></a>
+<h1 id="二、-与-Iterator-的关系"><a href="#二、-与-Iterator-的关系" class="headerlink" title="二、 与 Iterator 的关系"></a>二、 与 Iterator 的关系</h1><p>在 Iterator 那一篇文章中我们有说过，调用对象的 Symbol.iterator 方法，会返回该对象的一个迭代器对象。由于 Generator 就是一个迭代器生成函数，所以可以把它复制给 对象的 Symbol.iterator 属性，部署该对象的 Iterator 接口:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> Iterable = &#123;&#125;;</span><br><span class="line"></span><br><span class="line">Iterable[<span class="built_in">Symbol</span>.iterator] = <span class="function"><span class="keyword">function</span>*(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">yield</span> <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">yield</span> <span class="number">2</span>;</span><br><span class="line">  <span class="keyword">yield</span> <span class="number">3</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(...Iterable);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 1 2 3</span></span><br><span class="line"><span class="comment">// [Finished in 2.8s]</span></span><br></pre></td></tr></table></figure>
+<p>之前介绍过，for…of 循环、扩展运算符、结构赋值等都是调用的迭代器接口。所以我们可以直接将 Generator 返回的对象作为参数，传入这些方法中：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span>* <span class="title">gen</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">yield</span> <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">yield</span> <span class="number">2</span>;</span><br><span class="line">  <span class="keyword">yield</span> <span class="number">3</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(...gen());</span><br><span class="line"></span><br><span class="line"><span class="comment">// 1 2 3</span></span><br><span class="line"><span class="comment">// [Finished in 2.7s]</span></span><br></pre></td></tr></table></figure>
+<h1 id="三、-Generator-prototype-return-方法"><a href="#三、-Generator-prototype-return-方法" class="headerlink" title="三、 Generator.prototype.return() 方法"></a>三、 Generator.prototype.return() 方法</h1><p><code>return</code> 方法可以返回给定的值，并且中介遍历 Generator 函数。如果 return 不提供参数，则返回值的 value 属性为 undefined。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span>* <span class="title">gen</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">yield</span> <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">yield</span> <span class="number">2</span>;</span><br><span class="line">  <span class="keyword">yield</span> <span class="number">3</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> g = gen();</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(g.next());</span><br><span class="line"><span class="built_in">console</span>.log(g.return(<span class="string">"complete"</span>));</span><br><span class="line"><span class="built_in">console</span>.log(g.next());</span><br><span class="line"></span><br><span class="line"><span class="comment">// &#123; value: 1, done: false &#125;</span></span><br><span class="line"><span class="comment">// &#123; value: 'complete', done: true &#125;</span></span><br><span class="line"><span class="comment">// &#123; value: undefined, done: true &#125;</span></span><br><span class="line"><span class="comment">// [Finished in 2.7s]</span></span><br></pre></td></tr></table></figure>
+<h1 id="四、-yield-语句"><a href="#四、-yield-语句" class="headerlink" title="四、 yield* 语句"></a>四、 yield* 语句</h1><p>yield* 用来遍历一个迭代器对象：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span>* <span class="title">inner</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">yield</span> <span class="string">"hello!"</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span>* <span class="title">outer1</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">yield</span> <span class="string">"open"</span>;</span><br><span class="line">  <span class="keyword">yield</span> inner();</span><br><span class="line">  <span class="keyword">yield</span> <span class="string">"close"</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> gen = outer1();</span><br><span class="line"><span class="built_in">console</span>.log(gen.next().value);</span><br><span class="line"><span class="built_in">console</span>.log(gen.next().value);</span><br><span class="line"><span class="built_in">console</span>.log(gen.next().value);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span>* <span class="title">outer2</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">yield</span> <span class="string">"open"</span>;</span><br><span class="line">  <span class="keyword">yield</span>* inner();</span><br><span class="line">  <span class="keyword">yield</span> <span class="string">"close"</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> gen = outer2();</span><br><span class="line"><span class="built_in">console</span>.log(gen.next().value);</span><br><span class="line"><span class="built_in">console</span>.log(gen.next().value);</span><br><span class="line"><span class="built_in">console</span>.log(gen.next().value);</span><br><span class="line"></span><br><span class="line"><span class="comment">// open</span></span><br><span class="line"><span class="comment">// GeneratorFunctionPrototype &#123; _invoke: [Function: invoke] &#125;</span></span><br><span class="line"><span class="comment">// close</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// open</span></span><br><span class="line"><span class="comment">// hello!</span></span><br><span class="line"><span class="comment">// close</span></span><br><span class="line"><span class="comment">// [Finished in 2.7s]</span></span><br></pre></td></tr></table></figure>
+<h1 id="五、-异步操作的同步化表达"><a href="#五、-异步操作的同步化表达" class="headerlink" title="五、 异步操作的同步化表达"></a>五、 异步操作的同步化表达</h1><p>Generator 函数的暂停执行的效果，意味着可以把异步操作写在 yield 语句里面，等到调用 next 方法时再往后执行。这实际上等同于不需要写回调函数了，因为异步操作的后续操作可以放在 yield 语句下面，反正要等到调用 next 方法时再执行。所以，Generator 函数的一个重要实际意义就是用来处理异步操作，改写回调函数。</p>
+<p>Ajax 是典型的异步操作，通过 Generator 函数部署 Ajax 操作，可以用同步的方式表达。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span>* <span class="title">main</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> result = <span class="keyword">yield</span> request(<span class="string">"http://some.url"</span>);</span><br><span class="line">  <span class="keyword">var</span> resp = <span class="built_in">JSON</span>.parse(result);</span><br><span class="line">  <span class="built_in">console</span>.log(resp.value);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">request</span>(<span class="params">url</span>) </span>&#123;</span><br><span class="line">  makeAjaxCall(url, <span class="function"><span class="keyword">function</span>(<span class="params">response</span>) </span>&#123;</span><br><span class="line">    it.next(response);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> it = main();</span><br><span class="line">it.next();</span><br></pre></td></tr></table></figure>
+<p>上面代码的 main 函数，就是通过 Ajax 操作获取数据。可以看到，除了多了一个 yield，它几乎与同步操作的写法完全一样。注意，makeAjaxCall 函数中的 next 方法，必须加上 response 参数，因为 yield 语句构成的表达式，本身是没有值的，总是等于 undefined。</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/">Category</a></li>
+         
+          <li><a href="/tags/">Tag</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一、-基本概念"><span class="toc-number">1.</span> <span class="toc-text">一、 基本概念</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#二、-与-Iterator-的关系"><span class="toc-number">2.</span> <span class="toc-text">二、 与 Iterator 的关系</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#三、-Generator-prototype-return-方法"><span class="toc-number">3.</span> <span class="toc-text">三、 Generator.prototype.return() 方法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#四、-yield-语句"><span class="toc-number">4.</span> <span class="toc-text">四、 yield* 语句</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#五、-异步操作的同步化表达"><span class="toc-number">5.</span> <span class="toc-text">五、 异步操作的同步化表达</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://upon.ink/2016/08/05/ES6-Generator/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://upon.ink/2016/08/05/ES6-Generator/&text=ES6 Generator"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://upon.ink/2016/08/05/ES6-Generator/&title=ES6 Generator"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://upon.ink/2016/08/05/ES6-Generator/&is_video=false&description=ES6 Generator"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=ES6 Generator&body=Check out this article: http://upon.ink/2016/08/05/ES6-Generator/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://upon.ink/2016/08/05/ES6-Generator/&title=ES6 Generator"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://upon.ink/2016/08/05/ES6-Generator/&title=ES6 Generator"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://upon.ink/2016/08/05/ES6-Generator/&title=ES6 Generator"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://upon.ink/2016/08/05/ES6-Generator/&title=ES6 Generator"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://upon.ink/2016/08/05/ES6-Generator/&name=ES6 Generator&description=&lt;h1 id=&quot;一、-基本概念&quot;&gt;&lt;a href=&quot;#一、-基本概念&quot; class=&quot;headerlink&quot; title=&quot;一、 基本概念&quot;&gt;&lt;/a&gt;一、 基本概念&lt;/h1&gt;&lt;p&gt;&lt;code&gt;Generator&lt;/code&gt; 函数是 ES6 提供的一种异步编程解决方案，语法行为与传统函数完全不同。它的作用是在执行一个函数的时候，可以在某个点暂停执行，做一些其它工作，然后再返回这个函数继续执行，甚至带一些新的值。&lt;br&gt;执行 Generator 函数会返回一个迭代器对象 （Iterator），说明它是一个迭代器对象生成函数。返回的迭代器可以依次遍历 Generator 函数内部的每一个状态。&lt;br&gt;形式上，Generator 函数是一个普通函数，但是有两个特征：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;function&lt;/code&gt; 关键字与函数名之间有一个 &lt;code&gt;*&lt;/code&gt; 号；&lt;/li&gt;
+&lt;li&gt;函数内部使用 &lt;code&gt;yield&lt;/code&gt; 语句。yield 是一个关键字，和 return 类似，不同点在于 yield 语句可在一个函数中出现多次。&lt;em&gt;yield 表达式暂停了 Generator 函数的执行，然后可以从暂停的地方恢复执行&lt;/em&gt;。&lt;ul&gt;
+&lt;li&gt;yield 后面的表达式作为迭代器 next 函数的返回值；&lt;/li&gt;
+&lt;li&gt;迭代器 next 函数的参数作为上一次 yield 的返回值。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Generator 函数的调用方法与普通函数一样，也是在函数名后面加上一对圆括号。&lt;em&gt;不同的是，调用 Generator 后，该函数并不执行，返回的也不是函数运行结果，而是一个迭代器对象。&lt;/em&gt;&lt;/p&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2019 upon
+    <a href="http://www.miitbeian.gov.cn" rel="nofollow">浙ICP备18057077号</a>
+    <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33011002013730">浙公网安备 33011002013730号</a>
+  </div>
+</footer>
+
+    </div>
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+

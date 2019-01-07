@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang=en>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="一、为什么要使用测试首先，单元测试是衡量代码质量的一个重要标准，Github 上受欢迎的项目大多是有 test 文件夹，加上单元测试能让你的 module 值得别人信赖。其次，个人认为作为一个负责任的程序猿，每当你写完一个功能模块，你至少也是要手动去测试。而使用代码进行单元测试比起手动的来更容易复用，通过简单的重用实现更多的功能。并且在代码的改动之后，单元测试只需针对改动的部分进行测试，而不是每次">
+<meta name="keywords" content="NodeJs,测试">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NodeJs 测试用例 mocha、 should 以及 supertest">
+<meta property="og:url" content="http://upon.ink/2016/07/30/NodeJs-测试用例-mocha、-should-以及-supertest/index.html">
+<meta property="og:site_name" content="upon.ink">
+<meta property="og:description" content="一、为什么要使用测试首先，单元测试是衡量代码质量的一个重要标准，Github 上受欢迎的项目大多是有 test 文件夹，加上单元测试能让你的 module 值得别人信赖。其次，个人认为作为一个负责任的程序猿，每当你写完一个功能模块，你至少也是要手动去测试。而使用代码进行单元测试比起手动的来更容易复用，通过简单的重用实现更多的功能。并且在代码的改动之后，单元测试只需针对改动的部分进行测试，而不是每次">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-01-07T17:29:30.307Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="NodeJs 测试用例 mocha、 should 以及 supertest">
+<meta name="twitter:description" content="一、为什么要使用测试首先，单元测试是衡量代码质量的一个重要标准，Github 上受欢迎的项目大多是有 test 文件夹，加上单元测试能让你的 module 值得别人信赖。其次，个人认为作为一个负责任的程序猿，每当你写完一个功能模块，你至少也是要手动去测试。而使用代码进行单元测试比起手动的来更容易复用，通过简单的重用实现更多的功能。并且在代码的改动之后，单元测试只需针对改动的部分进行测试，而不是每次">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.png">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.png">
+          
+        
+    
+    <!-- title -->
+    <title>NodeJs 测试用例 mocha、 should 以及 supertest</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/">Category</a></li>
+         
+          <li><a href="/tags/">Tag</a></li>
+        
+      </ul>
+    </span>
+    <br>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2016/08/04/ES6-Iterator/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2016/07/30/2016年7月29日-阳台/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://upon.ink/2016/07/30/NodeJs-测试用例-mocha、-should-以及-supertest/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://upon.ink/2016/07/30/NodeJs-测试用例-mocha、-should-以及-supertest/&text=NodeJs 测试用例 mocha、 should 以及 supertest"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://upon.ink/2016/07/30/NodeJs-测试用例-mocha、-should-以及-supertest/&title=NodeJs 测试用例 mocha、 should 以及 supertest"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://upon.ink/2016/07/30/NodeJs-测试用例-mocha、-should-以及-supertest/&is_video=false&description=NodeJs 测试用例 mocha、 should 以及 supertest"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=NodeJs 测试用例 mocha、 should 以及 supertest&body=Check out this article: http://upon.ink/2016/07/30/NodeJs-测试用例-mocha、-should-以及-supertest/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://upon.ink/2016/07/30/NodeJs-测试用例-mocha、-should-以及-supertest/&title=NodeJs 测试用例 mocha、 should 以及 supertest"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://upon.ink/2016/07/30/NodeJs-测试用例-mocha、-should-以及-supertest/&title=NodeJs 测试用例 mocha、 should 以及 supertest"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://upon.ink/2016/07/30/NodeJs-测试用例-mocha、-should-以及-supertest/&title=NodeJs 测试用例 mocha、 should 以及 supertest"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://upon.ink/2016/07/30/NodeJs-测试用例-mocha、-should-以及-supertest/&title=NodeJs 测试用例 mocha、 should 以及 supertest"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://upon.ink/2016/07/30/NodeJs-测试用例-mocha、-should-以及-supertest/&name=NodeJs 测试用例 mocha、 should 以及 supertest&description=&lt;h1 id=&quot;一、为什么要使用测试&quot;&gt;&lt;a href=&quot;#一、为什么要使用测试&quot; class=&quot;headerlink&quot; title=&quot;一、为什么要使用测试&quot;&gt;&lt;/a&gt;一、为什么要使用测试&lt;/h1&gt;&lt;p&gt;首先，单元测试是衡量代码质量的一个重要标准，Github 上受欢迎的项目大多是有 test 文件夹，加上单元测试能让你的 module 值得别人信赖。&lt;br&gt;其次，个人认为作为一个负责任的程序猿，每当你写完一个功能模块，你至少也是要手动去测试。而使用代码进行单元测试比起手动的来更容易复用，通过简单的重用实现更多的功能。并且在代码的改动之后，单元测试只需针对改动的部分进行测试，而不是每次都从头开始，提高了效率。&lt;/p&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一、为什么要使用测试"><span class="toc-number">1.</span> <span class="toc-text">一、为什么要使用测试</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#二、测试框架-Mocha"><span class="toc-number">2.</span> <span class="toc-text">二、测试框架 - Mocha</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#三、断言库-should-js"><span class="toc-number">3.</span> <span class="toc-text">三、断言库 - should.js</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#四、supertest"><span class="toc-number">4.</span> <span class="toc-text">四、supertest</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope="" itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        NodeJs 测试用例 mocha、 should 以及 supertest
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+        <span itemprop="name">upon.ink</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2016-07-30T23:15:20.000Z" itemprop="datePublished">2016-07-30</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/tech/">tech</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/NodeJs/">NodeJs</a>, <a class="tag-link" href="/tags/测试/">测试</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h1 id="一、为什么要使用测试"><a href="#一、为什么要使用测试" class="headerlink" title="一、为什么要使用测试"></a>一、为什么要使用测试</h1><p>首先，单元测试是衡量代码质量的一个重要标准，Github 上受欢迎的项目大多是有 test 文件夹，加上单元测试能让你的 module 值得别人信赖。<br>其次，个人认为作为一个负责任的程序猿，每当你写完一个功能模块，你至少也是要手动去测试。而使用代码进行单元测试比起手动的来更容易复用，通过简单的重用实现更多的功能。并且在代码的改动之后，单元测试只需针对改动的部分进行测试，而不是每次都从头开始，提高了效率。</p>
+<a id="more"></a>
+<hr>
+<h1 id="二、测试框架-Mocha"><a href="#二、测试框架-Mocha" class="headerlink" title="二、测试框架 - Mocha"></a>二、测试框架 - Mocha</h1><p>Mocha 是一个功能丰富的 JavaScript 测试框架，它能运行在 Node.js 和浏览器中，支持 <code>BDD</code> （Behavior Driven Development）、 <code>TDD</code> （Test Driven Development） 等形式的测试。</p>
+<blockquote>
+<p>要了解更多可以访问 Mocha 的官网 <a href="http://mochajs.org/" target="_blank" rel="noopener">mochajs.org</a>.</p>
+</blockquote>
+<p>让我们从一个最简单的例子开始：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// unit.test.js</span></span><br><span class="line">describe(<span class="string">"mocha test describe"</span>, () =&gt; &#123;</span><br><span class="line">  it(<span class="string">"mocha test it"</span>, () =&gt; &#123;&#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>执行 <code>mocha unit.test.js</code>，结果如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mocha test describe</span><br><span class="line">  √ mocha test it</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">1 passing (10ms)</span><br></pre></td></tr></table></figure>
+<p>代码中的 describe 和 it 是什么意思呢？其实就是 BDD 中的那些意思，把它们当做语法来记就好了。describe 中的字符串，用来描述你要测的主体是什么；it 当中，描述具体的 case 内容。<br>我们可以看到，上面的测试代码中什么都没有运行，结果并没有报错，那在什么情况下回报错呢？</p>
+<blockquote>
+<p>if it throws an Error, it will work!</p>
+</blockquote>
+<p><strong><em>当 <code>it</code> 抛出错误的时候，就会产生作用。</em></strong></p>
+<p>我们尝试一下：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// unit.test.js</span></span><br><span class="line">describe(<span class="string">"mocha test describe"</span>, () =&gt; &#123;</span><br><span class="line">  it(<span class="string">"mocha test it success"</span>, () =&gt; &#123;&#125;);</span><br><span class="line"></span><br><span class="line">  it(<span class="string">"mocha test it error"</span>, () =&gt; &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"在 it 中抛出错误！"</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>执行测试结果为：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mocha test describe</span><br><span class="line">  √ mocha test it success</span><br><span class="line">  1) mocha test it error</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">1 passing (20ms)</span><br><span class="line">1 failing</span><br><span class="line"></span><br><span class="line">1) mocha test describe mocha test it error:</span><br><span class="line">   Error: 在 it 中抛出错误！</span><br></pre></td></tr></table></figure>
+<p>相信到这里，你已经对 Mocha 有大致了解。</p>
+<p>Mocha 还提供了几种钩子函数 <code>before()</code>, <code>after()</code>, <code>beforeEach()</code>, 和 <code>afterEach()</code>。什么是钩子函数呢？用一句话来形容一下：<em>钩子是将需要执行的函数或者其他一系列动作注册到一个统一的入口，程序通过调用这个钩子来执行这些已经注册的函数</em>。还是以上面的代码举例：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// unit.test.js</span></span><br><span class="line">describe(<span class="string">"mocha test describe"</span>, () =&gt; &#123;</span><br><span class="line">  <span class="comment">// 钩子函数，就是在函数进程中的某个时机被触发的函数</span></span><br><span class="line">  <span class="comment">// before 是一个钩子函数，可以把需要在所有测试前要做的事情写在这里</span></span><br><span class="line">  before(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.info(<span class="string">"(before hooks)"</span>);</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// beforeEach 也是一个钩子函数，可以把需要在每个测试前都要做的事情写在这里</span></span><br><span class="line">  beforeEach(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.info(<span class="string">"(before each hooks)"</span>);</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  it(<span class="string">"mocha test it success"</span>, () =&gt; &#123;&#125;);</span><br><span class="line"></span><br><span class="line">  it(<span class="string">"mocha test it error"</span>, () =&gt; &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"在 it 中抛出错误！"</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>结果输出：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mocha test describe</span><br><span class="line">(before hooks)</span><br><span class="line">  (before each hooks)</span><br><span class="line">  √ mocha test it success</span><br><span class="line">  (before each hooks)</span><br><span class="line">  1) mocha test it error</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">1 passing (27ms)</span><br><span class="line">1 failing</span><br><span class="line"></span><br><span class="line">1) mocha test describe mocha test it error:</span><br><span class="line">   Error: 在 it 中抛出错误！</span><br></pre></td></tr></table></figure>
+<p>Mocha 的介绍就到这里，Mocha 这一块还有关于异步、定时等等一些列的知识，想了解更多可以参考上面链接里的官网地址。</p>
+<hr>
+<h1 id="三、断言库-should-js"><a href="#三、断言库-should-js" class="headerlink" title="三、断言库 - should.js"></a>三、断言库 - should.js</h1><p>上面在 Mocha 中有提到过，<code>it</code> 函数在抛出错误的时候起作用，即发现错误。那么除了手动地抛出错误，还有什么更优雅的方式呢？这就涉及到现在要讲到的 <code>断言库</code>。相当于制定了一套判断规则，判断逻辑是否成立。<br>NodeJs 就内置了一套断言库，可以通过 <code>require(&#39;assert&#39;)</code> 来调用。但我要介绍的是 <code>should.js</code>。</p>
+<blockquote>
+<p>should.js 的 API 文档：<a href="http://shouldjs.github.io/" target="_blank" rel="noopener">http://shouldjs.github.io/</a></p>
+</blockquote>
+<p>举个例子，我现在要实现一个简单模块，满足一下功能：</p>
+<ul>
+<li>完成求绝对值的功能</li>
+<li>输入为数值</li>
+<li>数值不大于 100</li>
+<li>数值不小于 -50</li>
+</ul>
+<p>为了满足以上条件，我们编写了用例测试代码：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// unit.test.js</span></span><br><span class="line"><span class="keyword">var</span> absolute = <span class="built_in">require</span>(<span class="string">"../unittest.js"</span>).absolute;</span><br><span class="line"><span class="keyword">const</span> should = <span class="built_in">require</span>(<span class="string">"should"</span>);</span><br><span class="line"></span><br><span class="line">describe(<span class="string">"absolute module test"</span>, () =&gt; &#123;</span><br><span class="line">  it(<span class="string">"when n = 5, it should return 5"</span>, () =&gt; &#123;</span><br><span class="line">    absolute(<span class="number">5</span>).should.equal(<span class="number">5</span>);</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  it(<span class="string">"when n = -5, it should return 5"</span>, () =&gt; &#123;</span><br><span class="line">    absolute(<span class="number">-5</span>).should.equal(<span class="number">5</span>);</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  it(<span class="string">"when n is not a number, it should throw"</span>, () =&gt; &#123;</span><br><span class="line">    (<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      absolute(<span class="string">"string"</span>);</span><br><span class="line">    &#125;.should.throw(<span class="string">"n should be a Number"</span>));</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  it(<span class="string">"when n &gt; 100, it should throw"</span>, () =&gt; &#123;</span><br><span class="line">    (<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      absolute(<span class="number">150</span>);</span><br><span class="line">    &#125;.should.throw(<span class="string">"n should &lt;= 100"</span>));</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  it(<span class="string">"when n&lt; -50, it should throw"</span>, () =&gt; &#123;</span><br><span class="line">    (<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      absolute(<span class="number">-50</span>);</span><br><span class="line">    &#125;.should.throw(<span class="string">"n should &gt;= -50"</span>));</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>如果以下是我们实现的模块：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// unit.js</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">absolute</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (n &lt; <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> -n;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> n;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">exports.absolute = absolute;</span><br></pre></td></tr></table></figure>
+<p>通过测试我们会得到以下结果：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">absolute module test</span><br><span class="line">   √ when n = 5, it should return 5</span><br><span class="line">   √ when n = -5, it should return 5</span><br><span class="line">   1) when n is not a number, it should throw</span><br><span class="line">   2) when n &gt; 100, it should throw</span><br><span class="line">   3) when n&lt; -50, it should throw</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> 2 passing (27ms)</span><br><span class="line"> 3 failing</span><br><span class="line"></span><br><span class="line"> 1) absolute module test when n is not a number, it should throw:</span><br><span class="line">    AssertionError: expected &apos;string&apos; to be a function</span><br><span class="line">   expected &apos;string&apos; to have type function</span><br><span class="line">       expected &apos;string&apos; to be &apos;function&apos;</span><br><span class="line"></span><br><span class="line"> 2) absolute module test when n &gt; 100, it should throw:</span><br><span class="line">    AssertionError: expected 150 to be a function</span><br><span class="line">   expected 150 to have type function</span><br><span class="line">       expected &apos;number&apos; to be &apos;function&apos;</span><br><span class="line"></span><br><span class="line"> 3) absolute module test when n&lt; -50, it should throw:</span><br><span class="line">    AssertionError: expected 150 to be a function</span><br><span class="line">   expected 150 to have type function</span><br><span class="line">       expected &apos;number&apos; to be &apos;function&apos;</span><br></pre></td></tr></table></figure>
+<p>显然没有通过后面三条测试条件，于是我们修改代码 unit.js：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// unit.js</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">absolute</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> n !== <span class="string">"number"</span>) &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"n should be a Number"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (n &lt; <span class="number">-50</span>) &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"n should &gt;= -50"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (n &gt; <span class="number">100</span>) &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"n should &lt;= 100"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (n &lt; <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> -n;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> n;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">exports.absolute = absolute;</span><br></pre></td></tr></table></figure>
+<p>测试结果：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">absolute module test</span><br><span class="line">   √ when n = 5, it should return 5</span><br><span class="line">   √ when n = -5, it should return 5</span><br><span class="line">   √ when n is not a number, it should throw</span><br><span class="line">   √ when n &gt; 100, it should throw</span><br><span class="line">   √ when n&lt; -50, it should throw</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> 5 passing (19ms)</span><br></pre></td></tr></table></figure>
+<p>显然通过更改代码后，我们通过所有的用例测试。这就是测试驱动的开发过程。</p>
+<hr>
+<h1 id="四、supertest"><a href="#四、supertest" class="headerlink" title="四、supertest"></a>四、supertest</h1><p>在开发 Web 项目的时候，要测试某一个 API，如：/user，到底怎么编写测试用例呢？<br>使用：supertest</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> app = <span class="built_in">require</span>(<span class="string">"../app"</span>);</span><br><span class="line"><span class="keyword">var</span> supertest = <span class="built_in">require</span>(<span class="string">"supertest"</span>);</span><br><span class="line"><span class="comment">// 看下面这句，这是关键一句。得到的 request 对象可以直接按照</span></span><br><span class="line"><span class="comment">// superagent 的 API 进行调用</span></span><br><span class="line"><span class="keyword">var</span> request = supertest(app);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> should = <span class="built_in">require</span>(<span class="string">"should"</span>);</span><br><span class="line"></span><br><span class="line">describe(<span class="string">"test/app.test.js"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 我们的第一个测试用例，好好理解一下</span></span><br><span class="line">  it(<span class="string">"should return 55 when n is 10"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">done</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 之所以这个测试的 function 要接受一个 done 函数，是因为我们的测试内容</span></span><br><span class="line">    <span class="comment">// 涉及了异步调用，而 mocha 是无法感知异步调用完成的。所以我们主动接受它提供</span></span><br><span class="line">    <span class="comment">// 的 done 函数，在测试完毕时，自行调用一下，以示结束。</span></span><br><span class="line">    <span class="comment">// mocha 可以感知到我们的测试函数是否接受 done 参数。js 中，function</span></span><br><span class="line">    <span class="comment">// 对象是有长度的，它的长度由它的参数数量决定</span></span><br><span class="line">    <span class="comment">// (function (a, b, c, d) &#123;&#125;).length === 4</span></span><br><span class="line">    <span class="comment">// 所以 mocha 通过我们测试函数的长度就可以确定我们是否是异步测试。</span></span><br><span class="line"></span><br><span class="line">    request</span><br><span class="line">      .get(<span class="string">"/fib"</span>)</span><br><span class="line">      <span class="comment">// .query 方法用来传 querystring，.send 方法用来传 body。</span></span><br><span class="line">      <span class="comment">// 它们都可以传 Object 对象进去。</span></span><br><span class="line">      <span class="comment">// 在这里，我们等于访问的是 /fib?n=10</span></span><br><span class="line">      .query(&#123;</span><br><span class="line">        n: <span class="number">10</span></span><br><span class="line">      &#125;)</span><br><span class="line">      .end(<span class="function"><span class="keyword">function</span>(<span class="params">err, res</span>) </span>&#123;</span><br><span class="line">        <span class="comment">// 由于 http 返回的是 String，所以我要传入 '55'。</span></span><br><span class="line">        res.text.should.equal(<span class="string">"55"</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// done(err) 这种用法写起来很鸡肋，是因为偷懒不想测 err 的值</span></span><br><span class="line">        <span class="comment">// 如果勤快点，这里应该写成</span></span><br><span class="line">        <span class="comment">/*</span></span><br><span class="line"><span class="comment">                should.not.exist(err);</span></span><br><span class="line"><span class="comment">                res.text.should.equal('55');</span></span><br><span class="line"><span class="comment">                */</span></span><br><span class="line">        done(err);</span><br><span class="line">      &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 下面我们对于各种边界条件都进行测试，由于它们的代码雷同，</span></span><br><span class="line">  <span class="comment">// 所以我抽象出来了一个 testFib 方法。</span></span><br><span class="line">  <span class="keyword">var</span> testFib = <span class="function"><span class="keyword">function</span>(<span class="params">n, statusCode, expect, done</span>) </span>&#123;</span><br><span class="line">    request</span><br><span class="line">      .get(<span class="string">"/fib"</span>)</span><br><span class="line">      .query(&#123;</span><br><span class="line">        n: n</span><br><span class="line">      &#125;)</span><br><span class="line">      .expect(statusCode)</span><br><span class="line">      .end(<span class="function"><span class="keyword">function</span>(<span class="params">err, res</span>) </span>&#123;</span><br><span class="line">        res.text.should.equal(expect);</span><br><span class="line">        done(err);</span><br><span class="line">      &#125;);</span><br><span class="line">  &#125;;</span><br><span class="line">  it(<span class="string">"should return 0 when n === 0"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">done</span>) </span>&#123;</span><br><span class="line">    testFib(<span class="number">0</span>, <span class="number">200</span>, <span class="string">"0"</span>, done);</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  it(<span class="string">"should equal 1 when n === 1"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">done</span>) </span>&#123;</span><br><span class="line">    testFib(<span class="number">1</span>, <span class="number">200</span>, <span class="string">"1"</span>, done);</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  it(<span class="string">"should equal 55 when n === 10"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">done</span>) </span>&#123;</span><br><span class="line">    testFib(<span class="number">10</span>, <span class="number">200</span>, <span class="string">"55"</span>, done);</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  it(<span class="string">"should throw when n &gt; 10"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">done</span>) </span>&#123;</span><br><span class="line">    testFib(<span class="number">11</span>, <span class="number">500</span>, <span class="string">"n should &lt;= 10"</span>, done);</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  it(<span class="string">"should throw when n &lt; 0"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">done</span>) </span>&#123;</span><br><span class="line">    testFib(<span class="number">-1</span>, <span class="number">500</span>, <span class="string">"n should &gt;= 0"</span>, done);</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  it(<span class="string">"should throw when n isnt Number"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">done</span>) </span>&#123;</span><br><span class="line">    testFib(<span class="string">"good"</span>, <span class="number">500</span>, <span class="string">"n should be a Number"</span>, done);</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 单独测试一下返回码 500</span></span><br><span class="line">  it(<span class="string">"should status 500 when error"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">done</span>) </span>&#123;</span><br><span class="line">    request</span><br><span class="line">      .get(<span class="string">"/fib"</span>)</span><br><span class="line">      .query(&#123;</span><br><span class="line">        n: <span class="number">100</span></span><br><span class="line">      &#125;)</span><br><span class="line">      .expect(<span class="number">500</span>)</span><br><span class="line">      .end(<span class="function"><span class="keyword">function</span>(<span class="params">err, res</span>) </span>&#123;</span><br><span class="line">        done(err);</span><br><span class="line">      &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>其中 app.js 为：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">"express"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 与之前一样</span></span><br><span class="line"><span class="keyword">var</span> fibonacci = <span class="function"><span class="keyword">function</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// typeof NaN === 'number' 是成立的，所以要判断 NaN</span></span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> n !== <span class="string">"number"</span> || <span class="built_in">isNaN</span>(n)) &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"n should be a Number"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (n &lt; <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"n should &gt;= 0"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (n &gt; <span class="number">10</span>) &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"n should &lt;= 10"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (n === <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (n === <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> fibonacci(n - <span class="number">1</span>) + fibonacci(n - <span class="number">2</span>);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// END 与之前一样</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> app = express();</span><br><span class="line"></span><br><span class="line">app.get(<span class="string">"/fib"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// http 传来的东西默认都是没有类型的，都是 String，所以我们要手动转换类型</span></span><br><span class="line">  <span class="keyword">var</span> n = <span class="built_in">Number</span>(req.query.n);</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="comment">// 为何使用 String 做类型转换，是因为如果你直接给个数字给 res.send 的话，</span></span><br><span class="line">    <span class="comment">// 它会当成是你给了它一个 http 状态码，所以我们明确给 String</span></span><br><span class="line">    res.send(<span class="built_in">String</span>(fibonacci(n)));</span><br><span class="line">  &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">    <span class="comment">// 如果 fibonacci 抛错的话，错误信息会记录在 err 对象的 .message 属性中。</span></span><br><span class="line">    <span class="comment">// 拓展阅读：https://www.joyent.com/developers/node/design/errors</span></span><br><span class="line">    res.status(<span class="number">500</span>).send(e.message);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 暴露 app 出去。module.exports 与 exports 的区别请看《深入浅出 Node.js》</span></span><br><span class="line"><span class="built_in">module</span>.exports = app;</span><br><span class="line"></span><br><span class="line">app.listen(<span class="number">3000</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"app is listening at port 3000"</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>supertest 官网：<a href="https://github.com/visionmedia/supertest" target="_blank" rel="noopener">https://github.com/visionmedia/supertest</a><br>supertest 的 API 与 superagent 相同：<a href="http://visionmedia.github.io/superagent/" target="_blank" rel="noopener">http://visionmedia.github.io/superagent/</a></p>
+</blockquote>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/categories/">Category</a></li>
+         
+          <li><a href="/tags/">Tag</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一、为什么要使用测试"><span class="toc-number">1.</span> <span class="toc-text">一、为什么要使用测试</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#二、测试框架-Mocha"><span class="toc-number">2.</span> <span class="toc-text">二、测试框架 - Mocha</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#三、断言库-should-js"><span class="toc-number">3.</span> <span class="toc-text">三、断言库 - should.js</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#四、supertest"><span class="toc-number">4.</span> <span class="toc-text">四、supertest</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://upon.ink/2016/07/30/NodeJs-测试用例-mocha、-should-以及-supertest/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://upon.ink/2016/07/30/NodeJs-测试用例-mocha、-should-以及-supertest/&text=NodeJs 测试用例 mocha、 should 以及 supertest"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://upon.ink/2016/07/30/NodeJs-测试用例-mocha、-should-以及-supertest/&title=NodeJs 测试用例 mocha、 should 以及 supertest"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://upon.ink/2016/07/30/NodeJs-测试用例-mocha、-should-以及-supertest/&is_video=false&description=NodeJs 测试用例 mocha、 should 以及 supertest"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=NodeJs 测试用例 mocha、 should 以及 supertest&body=Check out this article: http://upon.ink/2016/07/30/NodeJs-测试用例-mocha、-should-以及-supertest/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://upon.ink/2016/07/30/NodeJs-测试用例-mocha、-should-以及-supertest/&title=NodeJs 测试用例 mocha、 should 以及 supertest"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://upon.ink/2016/07/30/NodeJs-测试用例-mocha、-should-以及-supertest/&title=NodeJs 测试用例 mocha、 should 以及 supertest"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://upon.ink/2016/07/30/NodeJs-测试用例-mocha、-should-以及-supertest/&title=NodeJs 测试用例 mocha、 should 以及 supertest"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://upon.ink/2016/07/30/NodeJs-测试用例-mocha、-should-以及-supertest/&title=NodeJs 测试用例 mocha、 should 以及 supertest"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://upon.ink/2016/07/30/NodeJs-测试用例-mocha、-should-以及-supertest/&name=NodeJs 测试用例 mocha、 should 以及 supertest&description=&lt;h1 id=&quot;一、为什么要使用测试&quot;&gt;&lt;a href=&quot;#一、为什么要使用测试&quot; class=&quot;headerlink&quot; title=&quot;一、为什么要使用测试&quot;&gt;&lt;/a&gt;一、为什么要使用测试&lt;/h1&gt;&lt;p&gt;首先，单元测试是衡量代码质量的一个重要标准，Github 上受欢迎的项目大多是有 test 文件夹，加上单元测试能让你的 module 值得别人信赖。&lt;br&gt;其次，个人认为作为一个负责任的程序猿，每当你写完一个功能模块，你至少也是要手动去测试。而使用代码进行单元测试比起手动的来更容易复用，通过简单的重用实现更多的功能。并且在代码的改动之后，单元测试只需针对改动的部分进行测试，而不是每次都从头开始，提高了效率。&lt;/p&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2019 upon
+    <a href="http://www.miitbeian.gov.cn" rel="nofollow">浙ICP备18057077号</a>
+    <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33011002013730">浙公网安备 33011002013730号</a>
+  </div>
+</footer>
+
+    </div>
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
