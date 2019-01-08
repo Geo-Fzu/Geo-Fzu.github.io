@@ -1,7 +1,7 @@
 ---
 title: clientHeight/offsetHeight/scrollHeight/offsetTop/scrollTop
 date: 2019-01-08 01:20:59
-tags: [JavaScript, Css, 概念]
+tags: [JavaScript, CSS, 概念]
 categories: tech
 ---
 

@@ -47,6 +47,8 @@ highlight:
 # Category & Tag
 default_category: uncategorized
 category_map:
+  tech: 技术
+  life: 生活
 tag_map:
 
 # Date / Time format
